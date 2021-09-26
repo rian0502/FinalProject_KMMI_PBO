@@ -15,11 +15,11 @@ import javafx.stage.Stage;
  *
  * @author muham
  */
-public class FinalProjectPBO extends Application {
+public class Main extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("view.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("view/view.fxml"));
         
         Scene scene = new Scene(root);
         
