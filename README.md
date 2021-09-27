@@ -10,20 +10,29 @@
         AccountHolderController <.. AccountHolderForm : Form Control      
 
     class Nasabah{
-          <<abstract>>
-          #IntegerProperty ID
-          #StringProperty nama
-          #StringProperty alamat
-          #IntegerProperty numAccounts
-          +IntegerProperty nextID()
-      }
+      <<abstract>>
+      #IntegerProperty ID
+      #StringProperty nama
+      #StringProperty alamat
+      #IntegerProperty sizeAccount
+      +IntegerProperty nextID()
+      +print(void)
+    }
     
     class Individual{
-        -IntegerProperty nik
-        -IntegerProperty npwp
-      }
+      -LongProperty nik
+      -LongProperty npwp
+      +setNik(void)
+      +setNpwp(void)
+      +getNik()
+      +getNpwp()
+      +print():
+    }
     class Perusahaan{
       -StringProperty nib
+      +setNib()
+      +getNib()
+      +print():
     }
     class Account{
       -IntegerProperty accNumber;
