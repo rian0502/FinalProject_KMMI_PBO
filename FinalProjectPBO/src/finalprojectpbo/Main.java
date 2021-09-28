@@ -15,30 +15,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-/**
- *
- * @author muham
- */
 public class Main extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("view/view.fxml"));
-        
         Scene scene = new Scene(root);
-        
         stage.setScene(scene);
         stage.show();
     }
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-//        launch(args);
-        NasabahDataModel ndm = new NasabahDataModel();
-        Individu person = new Individu(1,"Asep","bekasi",new Rekening(123,5000),666,555);
-        ndm.addIndvidual(person);
+        launch(args);
     }
     
 }
