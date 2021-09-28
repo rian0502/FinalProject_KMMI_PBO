@@ -14,22 +14,22 @@ public abstract class Nasabah {
     protected IntegerProperty id;
     protected StringProperty nama;
     protected StringProperty alamat;
-    private IntegerProperty sizeRekening;
+    private IntegerProperty rekNum;
     protected ArrayList <Rekening> rekening;
 
-    public Nasabah(int id, String nama, String alamat, int sizeRekening, ArrayList<Rekening> rekening) {
+    public Nasabah(int id, String nama, String alamat, int rekNum, ArrayList<Rekening> rekening) {
         this.id = new SimpleIntegerProperty(id);
         this.nama = new SimpleStringProperty(nama);
         this.alamat = new SimpleStringProperty(alamat);
-        this.sizeRekening = new SimpleIntegerProperty(sizeRekening);
+        this.rekNum = new SimpleIntegerProperty(rekNum);
         this.rekening = rekening;
     }
-    public Nasabah(int id, String nama, String alamat, int sizeRekening, Rekening rekenings) {
+    public Nasabah(int id, String nama, String alamat, int rekNum, Rekening rekenings) {
         this.rekening = new ArrayList<>();
         this.id = new SimpleIntegerProperty(id);
         this.nama = new SimpleStringProperty(nama);
         this.alamat = new SimpleStringProperty(alamat);
-        this.sizeRekening = new SimpleIntegerProperty(sizeRekening);
+        this.rekNum = new SimpleIntegerProperty(rekNum);
         this.rekening.add(rekenings);
     }
 
@@ -69,16 +69,16 @@ public abstract class Nasabah {
         this.alamat.set(alamat);
     }
 
-    public int getSizeRekening() {
-        return sizeRekening.get();
+    public int getRekNum() {
+        return rekNum.get();
     }
 
-    public IntegerProperty sizeRekeningProperty() {
-        return sizeRekening;
+    public IntegerProperty rekNumProperty() {
+        return rekNum;
     }
 
-    public void setSizeRekening(int sizeRekening) {
-        this.sizeRekening.set(sizeRekening);
+    public void setRekNum(int rekNum) {
+        this.rekNum.set(rekNum);
     }
 
     public ArrayList<Rekening> getRekening() {
