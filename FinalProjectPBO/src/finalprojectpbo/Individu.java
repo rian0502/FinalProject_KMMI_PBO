@@ -12,14 +12,14 @@ public class Individu extends Nasabah {
     private LongProperty nik;
     private LongProperty npwp;
 
-    public Individu(int id, String nama, String alamat, int sizeRekening, ArrayList<Rekening> rekening, long nik, long npwp) {
-        super(id, nama, alamat, sizeRekening, rekening);
+    public Individu(int id, String nama, String alamat,ArrayList<Rekening> rekening, long nik, long npwp) {
+        super(id, nama, alamat,rekening);
         this.nik = new SimpleLongProperty(nik);
         this.npwp = new SimpleLongProperty(npwp);
     }
 
-    public Individu(int id, String nama, String alamat, int sizeRekening, Rekening rekenings, long nik, long npwp) {
-        super(id, nama, alamat, sizeRekening, rekenings);
+    public Individu(int id, String nama, String alamat, Rekening rekenings, long nik, long npwp) {
+        super(id, nama, alamat, rekenings);
         this.nik = new SimpleLongProperty(nik);
         this.npwp = new SimpleLongProperty(npwp);
     }

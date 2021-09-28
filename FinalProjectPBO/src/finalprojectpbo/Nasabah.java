@@ -17,19 +17,18 @@ public abstract class Nasabah {
     private IntegerProperty rekNum;
     protected ArrayList <Rekening> rekening;
 
-    public Nasabah(int id, String nama, String alamat, int rekNum, ArrayList<Rekening> rekening) {
+    public Nasabah(int id, String nama, String alamat,ArrayList<Rekening> rekening) {
         this.id = new SimpleIntegerProperty(id);
         this.nama = new SimpleStringProperty(nama);
         this.alamat = new SimpleStringProperty(alamat);
-        this.rekNum = new SimpleIntegerProperty(rekNum);
         this.rekening = rekening;
     }
-    public Nasabah(int id, String nama, String alamat, int rekNum, Rekening rekenings) {
+    public Nasabah(int id, String nama, String alamat, Rekening rekenings) {
         this.rekening = new ArrayList<>();
         this.id = new SimpleIntegerProperty(id);
         this.nama = new SimpleStringProperty(nama);
         this.alamat = new SimpleStringProperty(alamat);
-        this.rekNum = new SimpleIntegerProperty(rekNum);
+
         this.rekening.add(rekenings);
     }
 

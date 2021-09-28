@@ -11,13 +11,13 @@ import java.util.ArrayList;
 public class Perusahaan extends Nasabah{
     private StringProperty nib;
 
-    public Perusahaan(int id, String nama, String alamat, int sizeRekening, ArrayList<Rekening> rekening, String nib) {
-        super(id, nama, alamat, sizeRekening, rekening);
+    public Perusahaan(int id, String nama, String alamat, ArrayList<Rekening> rekening, String nib) {
+        super(id, nama, alamat, rekening);
         this.nib = new SimpleStringProperty(nib);
     }
 
-    public Perusahaan(int id, String nama, String alamat, int sizeRekening, Rekening rekenings, String nib) {
-        super(id, nama, alamat, sizeRekening, rekenings);
+    public Perusahaan(int id, String nama, String alamat, Rekening rekenings, String nib) {
+        super(id, nama, alamat, rekenings);
         this.nib = new SimpleStringProperty(nib);
     }
 

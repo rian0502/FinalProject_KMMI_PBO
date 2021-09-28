@@ -5,7 +5,10 @@
  */
 package finalprojectpbo;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+
+import finalprojectpbo.database.NasabahDataModel;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -32,8 +35,10 @@ public class Main extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        launch(args);
-    
+//        launch(args);
+        NasabahDataModel ndm = new NasabahDataModel();
+        Individu person = new Individu(1,"Asep","bekasi",new Rekening(123,5000),666,555);
+        ndm.addIndvidual(person);
     }
     
 }
