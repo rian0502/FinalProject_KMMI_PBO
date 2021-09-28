@@ -50,7 +50,13 @@ public class Individu extends Nasabah {
 
     @Override
     public void print(){
-        System.out.println("NIK  :" + getNik());
-        System.out.println("NPWP :" + getNpwp());
+        System.out.println("NIK      : " + getNik());
+        System.out.println("NPWP     : " + getNpwp());
+        System.out.println("Nama     : "+getNama());
+        System.out.println("Alamat   : "+getAlamat());
+        System.out.println("Rekening : ");
+        for (Rekening rek : rekening){
+            System.out.println(rek);
+        }
     }
 }
