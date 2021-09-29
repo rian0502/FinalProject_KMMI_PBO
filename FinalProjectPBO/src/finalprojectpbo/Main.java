@@ -23,6 +23,7 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("view/view.fxml"));
         Scene scene = new Scene(root);
+        stage.setTitle("Sistem Koperasi");
         stage.setScene(scene);
         stage.show();
     }
