@@ -16,8 +16,8 @@ public class NasabahDataModel {
     public NasabahDataModel() {
         this.connection = DBHelper.getConnetion();
     }
-    public void addIndvidual(Individu individu){
 
+    public void addIndvidual(Individu individu){
         try {
             String sqlNasabah = "INSERT INTO Nasabah (id_nasabah,nama,alamat)"+" VALUES (?,?,?)";
             String sqlIndividual = "INSERT INTO individual (id_nasabah,nik,npwp)"+" VALUES (?,?,?)";
@@ -167,4 +167,14 @@ public class NasabahDataModel {
         return 0;
     }
 
+    public void addRekening(int holderId, Rekening rek) throws SQLException {
+        String insertNasabah = "INSERT INTO Rekening (id_nasabah, noRekening, saldo)"
+                + " VALUES (?, ?, ?)";
+
+        PreparedStatement preparedRekening = connection.prepareStatement(insertNasabah);
+        preparedRekening.setInt(1, holderId);
+        preparedRekening.setInt(2, rek.getNoRekening());
+        preparedRekening.setDouble(3, rek.getSaldo());
+        preparedRekening.execute();
+    }
 }

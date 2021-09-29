@@ -5,9 +5,11 @@
  */
 package finalprojectpbo;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import finalprojectpbo.database.DBHelper;
 import finalprojectpbo.database.NasabahDataModel;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -27,6 +29,7 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
+//        DBHelper.getConnetion();
     }
     
 }
