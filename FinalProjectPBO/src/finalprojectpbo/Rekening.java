@@ -12,12 +12,12 @@ public class Rekening {
     private IntegerProperty noRekening;
     private DoubleProperty saldo;
     
-    public Rekening(int noRekening, double saldo){
+    public Rekening(Integer noRekening, Double saldo){
         this.noRekening = new SimpleIntegerProperty(noRekening);
         this.saldo = new SimpleDoubleProperty(saldo);
     }
 
-    public int getNoRekening() {
+    public Integer getNoRekening() {
         return noRekening.get();
     }
 
@@ -25,7 +25,7 @@ public class Rekening {
         return noRekening;
     }
 
-    public void setNoRekening(int noRekening) {
+    public void setNoRekening(Integer noRekening) {
         this.noRekening.set(noRekening);
     }
 
@@ -37,16 +37,15 @@ public class Rekening {
         return saldo;
     }
 
-    public void setSaldo(double saldo) {
+    public void setSaldo(Double saldo) {
         this.saldo.set(saldo);
     }
 
-    public void tambahSaldo(double jumlah){
-        setSaldo(this.saldo.get()+jumlah);
+    public void tambahSaldo(Double jumlah){
+        setSaldo(this.saldo.get() + jumlah);
     }
     
-    public void tarikTunai(double jumlah){
-        setSaldo(this.saldo.get()-jumlah);
-
+    public void tarikTunai(Double jumlah){
+        setSaldo(this.saldo.get() - jumlah);
     }
 }
