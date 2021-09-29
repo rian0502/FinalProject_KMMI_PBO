@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import finalprojectpbo.Individu;
 import finalprojectpbo.Rekening;
 import finalprojectpbo.database.NasabahDataModel;
 import javafx.event.ActionEvent;
@@ -19,6 +20,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+
+import javax.xml.ws.Holder;
 
 
 public class viewController implements Initializable {
@@ -117,7 +120,8 @@ public class viewController implements Initializable {
 
     @FXML
     void handleHapusIndividual(ActionEvent event) {
-
+        tfIDIndividual.setText(""+nadamod.nextRekeningID());
+        tfNoRekIndividual.setText(tfIDIndividual.getText() + "01");
     }
 
     @FXML
@@ -137,7 +141,19 @@ public class viewController implements Initializable {
 
     @FXML
     void handleTambahNasabahIndividual(ActionEvent event) throws SQLException {
-//        Rekening rek = Rekening(Integer.parseInt())
+        Individu holderIndividu = new Individu(
+            Integer.parseInt(tfIDIndividual.getText()),
+            tfNamaIndividual.getText(),
+            tfAlamatIndividual.getText(),
+            Long.parseLong(tfNIKIndividual.getText()),
+            Long.parseLong(tfNPWPIndividual.getText()),
+            new Rekening(Integer.parseInt(tfNoRekIndividual.getText()), Double.parseDouble(tfSaldoRekIndividual.getText()))
+        );
+
+        nadamod.addIndvidual(holderIndividu);
+        lblAddStatusindividual.setText("Account berhasil dibuat");
+        btnPerbaruiIndividual.fire();
+        btnHapusIndividual.fire();
     }
 
     @FXML
@@ -162,6 +178,9 @@ public class viewController implements Initializable {
         //DB Status
         nadamod = new NasabahDataModel();
         lblDBStatus.setText(nadamod.connection == null? "Not Connected" : "Connected");
+        //New
+        btnHapusIndividual.fire(); //Clear and also show id nasabah with nomor rekening
+        btnPerbaruiIndividual.fire(); //Show data in table
     }
     
 }

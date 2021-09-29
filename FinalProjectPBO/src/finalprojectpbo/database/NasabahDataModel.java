@@ -100,7 +100,7 @@ public class NasabahDataModel {
        }
         return data;
     }
-    public ObservableList<Perusahaan> getPersuahaan(){
+    public ObservableList<Perusahaan> getPerusahaan(){
         ObservableList<Perusahaan> data = FXCollections.observableArrayList();
         try{
             String sql = "SELECT 'id_nasabah', 'nama', 'alamat', 'nib'"+
