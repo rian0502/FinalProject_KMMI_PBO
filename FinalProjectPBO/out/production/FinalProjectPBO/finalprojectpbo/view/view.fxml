@@ -1,14 +1,114 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" prefHeight="200" prefWidth="320" xmlns:fx="http://javafx.com/fxml/1" fx:controller="finalprojectpbo.controller.viewController">
-    <children>
-        <Button layoutX="126" layoutY="90" text="Click Me!" onAction="#handleButtonAction" fx:id="button" />
-        <Label layoutX="126" layoutY="120" minHeight="16" minWidth="69" fx:id="label" />
-    </children>
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="finalprojectpbo.controller.viewController">
+   <children>
+      <MenuBar layoutY="2.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Close" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Transaksi">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Tambah Saldo" />
+                  <MenuItem mnemonicParsing="false" text="Tarik Tunai" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <AnchorPane layoutY="27.0" prefHeight="693.0" prefWidth="1280.0">
+         <children>
+            <TabPane prefHeight="693.0" prefWidth="1280.0" tabClosingPolicy="UNAVAILABLE">
+              <tabs>
+                <Tab text="Individual">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                           <children>
+                              <HBox prefHeight="665.0" prefWidth="1280.0">
+                                 <children>
+                                    <AnchorPane prefHeight="665.0" prefWidth="349.0" style="-fx-background-color: #3742fa;" />
+                                    <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="665.0" prefWidth="934.0">
+                                       <children>
+                                          <VBox prefHeight="666.0" prefWidth="932.0">
+                                             <children>
+                                                <AnchorPane prefHeight="403.0" prefWidth="932.0">
+                                                   <children>
+                                                      <TableView prefHeight="403.0" prefWidth="934.0">
+                                                        <columns>
+                                                          <TableColumn prefWidth="95.0" text="ID" />
+                                                          <TableColumn prefWidth="231.0" text="Nama" />
+                                                            <TableColumn prefWidth="157.0" text="Alamat" />
+                                                            <TableColumn prefWidth="175.0" text="NIK" />
+                                                            <TableColumn prefWidth="168.0" text="NPWP" />
+                                                            <TableColumn prefWidth="107.0" text="Jumlah Akun" />
+                                                        </columns>
+                                                      </TableView>
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                                                   </VBox.margin>
+                                                </AnchorPane>
+                                                <HBox prefHeight="262.0" prefWidth="932.0">
+                                                   <children>
+                                                      <AnchorPane prefHeight="262.0" prefWidth="465.0">
+                                                         <children>
+                                                            <TableView prefHeight="261.0" prefWidth="465.0">
+                                                              <columns>
+                                                                <TableColumn prefWidth="226.0" text="Nomor Rekening" />
+                                                                <TableColumn prefWidth="238.0" text="Saldo" />
+                                                              </columns>
+                                                            </TableView>
+                                                         </children>
+                                                         <HBox.margin>
+                                                            <Insets left="10.0" />
+                                                         </HBox.margin>
+                                                      </AnchorPane>
+                                                      <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="262.0" prefWidth="470.0">
+                                                         <HBox.margin>
+                                                            <Insets right="10.0" />
+                                                         </HBox.margin>
+                                                      </AnchorPane>
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab text="Perusahaan">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                  </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+         </children>
+      </AnchorPane>
+      <Label layoutX="1119.0" layoutY="6.0" text="DB Status:" />
+      <Label layoutX="1179.0" layoutY="6.0" />
+   </children>
 </AnchorPane>
