@@ -65,6 +65,11 @@
                                           <Button fx:id="btnAddIndividual" layoutX="29.0" layoutY="468.0" mnemonicParsing="false" onAction="#handleTambahNasabahIndividual" prefHeight="38.0" prefWidth="268.0" text="Tambah Nasabah" />
                                           <Button fx:id="btnPerbaruiIndividual" layoutX="29.0" layoutY="514.0" mnemonicParsing="false" onAction="#handlePerbaruiTabelIndividual" prefHeight="38.0" prefWidth="268.0" text="Perbarui Data Tabel" />
                                           <Button fx:id="btnHapusIndividual" layoutX="29.0" layoutY="560.0" mnemonicParsing="false" onAction="#handleHapusIndividual" prefHeight="38.0" prefWidth="268.0" text="Hapus Form" />
+                                          <Label fx:id="lblAddStatusindividual" layoutX="31.0" layoutY="433.0" textFill="WHITE">
+                                             <font>
+                                                <Font name="Segoe UI" size="21.0" />
+                                             </font>
+                                          </Label>
                                        </children>
                                     </AnchorPane>
                                     <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="650.0" prefWidth="954.0">
@@ -148,6 +153,11 @@
                                           <Button fx:id="btnAddPerusahaan" layoutX="29.0" layoutY="468.0" mnemonicParsing="false" onAction="#handleTambahNasabahPerusahaan" prefHeight="38.0" prefWidth="268.0" text="Tambah Nasabah" />
                                           <Button fx:id="btnPerbaruiPerusahaan" layoutX="29.0" layoutY="514.0" mnemonicParsing="false" onAction="#handlePerbaruiTabelPerusahaan" prefHeight="38.0" prefWidth="268.0" text="Perbarui Data Tabel" />
                                           <Button fx:id="btnHapusPerusahaan" layoutX="29.0" layoutY="560.0" mnemonicParsing="false" onAction="#handleHapusPerusahaan" prefHeight="38.0" prefWidth="268.0" text="Hapus Form" />
+                                          <Label fx:id="lblAddStatusPerusahaan" layoutX="31.0" layoutY="429.0" textFill="WHITE">
+                                             <font>
+                                                <Font name="Segoe UI" size="21.0" />
+                                             </font>
+                                          </Label>
                                        </children>
                                     </AnchorPane>
                                     <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="650.0" prefWidth="954.0">
@@ -213,6 +223,6 @@
          </children>
       </AnchorPane>
       <Label layoutX="1119.0" layoutY="6.0" text="DB Status:" />
-      <Label layoutX="1179.0" layoutY="6.0" />
+      <Label fx:id="lblDBStatus" layoutX="1179.0" layoutY="6.0" />
    </children>
 </AnchorPane>
