@@ -6,7 +6,13 @@
 package finalprojectpbo.controller;
 
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import finalprojectpbo.Rekening;
+import finalprojectpbo.database.NasabahDataModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -107,6 +113,8 @@ public class viewController implements Initializable {
     @FXML
     private Button btnTambahRekBaruPerusahaan;
 
+    private NasabahDataModel nadamod;
+
     @FXML
     void handleHapusIndividual(ActionEvent event) {
 
@@ -128,8 +136,8 @@ public class viewController implements Initializable {
     }
 
     @FXML
-    void handleTambahNasabahIndividual(ActionEvent event) {
-
+    void handleTambahNasabahIndividual(ActionEvent event) throws SQLException {
+//        Rekening rek = Rekening(Integer.parseInt())
     }
 
     @FXML
@@ -150,6 +158,10 @@ public class viewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-    }    
+
+        //DB Status
+        nadamod = new NasabahDataModel();
+        lblDBStatus.setText(nadamod.connection == null? "Not Connected" : "Connected");
+    }
     
 }

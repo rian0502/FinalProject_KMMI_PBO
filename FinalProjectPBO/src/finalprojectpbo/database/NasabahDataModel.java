@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 
 public class NasabahDataModel {
-    private  final Connection connection ;
+    public final Connection connection ;
 
     public NasabahDataModel() {
         this.connection = DBHelper.getConnetion();
