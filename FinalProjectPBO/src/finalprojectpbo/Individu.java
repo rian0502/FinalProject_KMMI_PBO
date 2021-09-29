@@ -12,19 +12,19 @@ public class Individu extends Nasabah {
     private LongProperty nik;
     private LongProperty npwp;
 
-    public Individu(int id, String nama, String alamat,long nik, long npwp, ArrayList<Rekening> rekening) {
+    public Individu(Integer id, String nama, String alamat, Long nik, Long npwp, ArrayList<Rekening> rekening) {
         super(id, nama, alamat,rekening);
         this.nik = new SimpleLongProperty(nik);
         this.npwp = new SimpleLongProperty(npwp);
     }
 
-    public Individu(int id, String nama, String alamat, long nik, long npwp, Rekening rekenings) {
+    public Individu(Integer id, String nama, String alamat, Long nik, Long npwp, Rekening rekenings) {
         super(id, nama, alamat, rekenings);
         this.nik = new SimpleLongProperty(nik);
         this.npwp = new SimpleLongProperty(npwp);
     }
 
-    public long getNik() {
+    public Long getNik() {
         return nik.get();
     }
 
@@ -36,7 +36,7 @@ public class Individu extends Nasabah {
         this.nik.set(nik);
     }
 
-    public long getNpwp() {
+    public Long getNpwp() {
         return npwp.get();
     }
 
