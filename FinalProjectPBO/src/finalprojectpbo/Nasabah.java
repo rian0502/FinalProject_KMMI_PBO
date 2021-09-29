@@ -17,7 +17,7 @@ public abstract class Nasabah {
     private IntegerProperty rekNum;
     protected ArrayList <Rekening> rekening;
 
-    public Nasabah(Integer id, String nama, String alamat,ArrayList<Rekening> rekening) {
+    public Nasabah(Integer id, String nama, String alamat, ArrayList<Rekening> rekening) {
         this.id = new SimpleIntegerProperty(id);
         this.nama = new SimpleStringProperty(nama);
         this.alamat = new SimpleStringProperty(alamat);
