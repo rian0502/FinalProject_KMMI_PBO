@@ -5,7 +5,11 @@
  */
 package finalprojectpbo.controller;
 
+import java.awt.*;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -22,12 +26,19 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import javax.xml.ws.Holder;
 
 
 public class viewController implements Initializable {
+    @FXML
+    private MenuItem btnHelp;
+
     @FXML
     private TextField tfIDIndividual;
 
@@ -199,7 +210,29 @@ public class viewController implements Initializable {
     @FXML
     private Label lblDBStatus;
 
+    @FXML
+    private Label lblTarikTambahIndividu;
+
+    @FXML
+    private Label lblTambahTarikPerusahaan;
+
     private NasabahDataModel nadamod;
+
+    private Rekening globalRekening; //Untuk tambah/tarik saldo
+
+    @FXML
+    void handleButtonHelp(ActionEvent event) { //Ke github
+        Desktop desktop = java.awt.Desktop.getDesktop();
+        try {
+            //specify the protocol along with the URL
+            URI oURL = new URI(
+                    "https://github.com/rian0502/FinalProject_KMMI_PBO");
+            desktop.browse(oURL);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
 
     @FXML
     void handleHapusIndividual(ActionEvent event) throws SQLException {
@@ -210,6 +243,8 @@ public class viewController implements Initializable {
         tfNIKIndividual.setText("");
         tfNPWPIndividual.setText("");
         tfSaldoRekIndividual.setText("");
+        tfSaldoRekBaruIndividual.setText("");
+        tfNominalIndividual.setText("");
     }
 
     @FXML
@@ -220,6 +255,8 @@ public class viewController implements Initializable {
         tfAlamatPerusahaan.setText("");
         tfNIBPerusahaan.setText("");
         tfSaldoPerusahaan.setText("");
+        tfSaldoRekBaruPerusahaan.setText("");
+        tfNominalPerusahaan.setText("");
     }
 
     @FXML
@@ -234,7 +271,13 @@ public class viewController implements Initializable {
         tblDataIndividu.setItems(null);
         tblDataIndividu.setItems(data);
         btnTambahRekBaruIndividual.setDisable(true);
+        btnTambahSaldoIndividual.setDisable(true);
+        btnTarikTunaiIndividual.setDisable(true);
+        tfNominalIndividual.setDisable(true);
+        tfSaldoRekBaruIndividual.setDisable(true);
         lblAddStatusindividual.setText("");
+        tblRekeningIndividu.setItems(null);
+        lblTarikTambahIndividu.setText("");
     }
 
     @FXML
@@ -248,7 +291,13 @@ public class viewController implements Initializable {
         tblDataPerusahaan.setItems(null);
         tblDataPerusahaan.setItems(data);
         btnTambahRekBaruPerusahaan.setDisable(true);
+        btnTambahSaldoPerusahaan.setDisable(true);
+        btnTarikTunaiPerusahaan.setDisable(true);
+        tfSaldoRekBaruPerusahaan.setDisable(true);
+        tfNominalPerusahaan.setDisable(true);
         lblAddStatusPerusahaan.setText("");
+        tblRekeningPerusahaan.setItems(null);
+        lblTambahTarikPerusahaan.setText("");
     }
 
     @FXML
@@ -315,23 +364,67 @@ public class viewController implements Initializable {
     }
 
     @FXML
-    void handleTambahSaldoIndividual(ActionEvent event) {
-
+    void handleTambahSaldoIndividual(ActionEvent event) throws SQLException {
+        Double saldoBaru = globalRekening.getSaldo() + Double.parseDouble(tfNominalIndividual.getText());
+        String tambahSaldo = "UPDATE Rekening SET saldo = " + saldoBaru
+                + " WHERE noRekening = " + globalRekening.getNoRekening();
+        PreparedStatement preparedSaldoBaru = nadamod.connection.prepareStatement(tambahSaldo);
+        preparedSaldoBaru.execute();
+        preparedSaldoBaru.close();
+        btnPerbaruiIndividual.fire();
+        btnHapusIndividual.fire();
+        lihatDataRekeningIndividu(Integer.parseInt(tfIDNasabahBaruIndividual.getText()));
+        lblTarikTambahIndividu.setText("Berhasil!");
     }
 
     @FXML
-    void handleTarikTunaiIndividual(ActionEvent event) {
-
+    void handleTarikTunaiIndividual(ActionEvent event) throws SQLException {
+        if (globalRekening.getSaldo() < Double.parseDouble(tfNominalIndividual.getText())) {
+            lblTarikTambahIndividu.setText("Saldo Kurang");
+        } else {
+            Double saldoBaru = globalRekening.getSaldo() - Double.parseDouble(tfNominalIndividual.getText());
+            String tarikTunai = "UPDATE Rekening SET saldo = " + saldoBaru
+                    + " WHERE noRekening = " + globalRekening.getNoRekening();
+            PreparedStatement preparedSaldoBaru = nadamod.connection.prepareStatement(tarikTunai);
+            preparedSaldoBaru.execute();
+            preparedSaldoBaru.close();
+            btnPerbaruiIndividual.fire();
+            btnHapusIndividual.fire();
+            lihatDataRekeningIndividu(Integer.parseInt(tfIDNasabahBaruIndividual.getText()));
+            lblTarikTambahIndividu.setText("Berhasil!");
+        }
     }
 
     @FXML
-    void handleTambahSaldoPerusahaan(ActionEvent event) {
-
+    void handleTambahSaldoPerusahaan(ActionEvent event) throws SQLException{
+        Double saldoBaru = globalRekening.getSaldo() + Double.parseDouble(tfNominalPerusahaan.getText());
+        String tambahSaldo = "UPDATE Rekening SET saldo = " + saldoBaru
+                + " WHERE noRekening = " + globalRekening.getNoRekening();
+        PreparedStatement preparedSaldoBaru = nadamod.connection.prepareStatement(tambahSaldo);
+        preparedSaldoBaru.execute();
+        preparedSaldoBaru.close();
+        btnPerbaruiPerusahaan.fire();
+        btnHapusPerusahaan.fire();
+        lihatDataRekeningPerusahaan(Integer.parseInt(tfIDNasabahBaruPerusahaan.getText()));
+        lblTambahTarikPerusahaan.setText("Berhasil!");
     }
 
     @FXML
-    void handleTarikTunaiPerusahaan(ActionEvent event) {
-
+    void handleTarikTunaiPerusahaan(ActionEvent event) throws SQLException{
+        if (globalRekening.getSaldo() < Double.parseDouble(tfNominalPerusahaan.getText())) {
+            lblTarikTambahIndividu.setText("Saldo Kurang");
+        } else {
+            Double saldoBaru = globalRekening.getSaldo() - Double.parseDouble(tfNominalPerusahaan.getText());
+            String tarikTunai = "UPDATE Rekening SET saldo = " + saldoBaru
+                    + " WHERE noRekening = " + globalRekening.getNoRekening();
+            PreparedStatement preparedSaldoBaru = nadamod.connection.prepareStatement(tarikTunai);
+            preparedSaldoBaru.execute();
+            preparedSaldoBaru.close();
+            btnPerbaruiPerusahaan.fire();
+            btnHapusPerusahaan.fire();
+            lihatDataRekeningPerusahaan(Integer.parseInt(tfIDNasabahBaruPerusahaan.getText()));
+            lblTambahTarikPerusahaan.setText("Berhasil!");
+        }
     }
 
     @Override
@@ -348,11 +441,14 @@ public class viewController implements Initializable {
             System.out.println("Error");
         }
 
+        //Klik data di table akun individu
         tblDataIndividu.getSelectionModel().selectedIndexProperty().addListener(listener -> {
             if (tblDataIndividu.getSelectionModel().getSelectedItem() != null) {
                 Individu individu =tblDataIndividu.getSelectionModel().getSelectedItem();
+                individu.print();
                 lihatDataRekeningIndividu(individu.getId());
                 btnTambahRekBaruIndividual.setDisable(false);
+                tfSaldoRekBaruIndividual.setDisable(false);
                 tfIDNasabahBaruIndividual.setText("" + individu.getId());
                 try {
                     tfNoRekBaruIndividual.setText("" + nadamod.nextNoRekening(individu.getId()));
@@ -362,17 +458,42 @@ public class viewController implements Initializable {
             }
         });
 
+        //Klik data di tabel akun perusahaan
         tblDataPerusahaan.getSelectionModel().selectedIndexProperty().addListener(listener -> {
             if (tblDataPerusahaan.getSelectionModel().getSelectedItem() != null) {
                 Perusahaan perusahaan = tblDataPerusahaan.getSelectionModel().getSelectedItem();
+                perusahaan.print();
                 lihatDataRekeningPerusahaan(perusahaan.getId());
                 btnTambahRekBaruPerusahaan.setDisable(false);
+                tfSaldoRekBaruPerusahaan.setDisable(false);
                 tfIDNasabahBaruPerusahaan.setText("" + perusahaan.getId());
                 try {
                     tfNoRekBaruPerusahaan.setText("" + nadamod.nextNoRekening(perusahaan.getId()));
                 } catch (Exception ex) {
                     System.out.println("Gagal load data rekening");
                 }
+            }
+        });
+
+        //Klik data di rekening individu
+        tblRekeningIndividu.getSelectionModel().selectedIndexProperty().addListener(listener -> {
+            if (tblRekeningIndividu.getSelectionModel().getSelectedItem() != null) {
+                globalRekening = tblRekeningIndividu.getSelectionModel().getSelectedItem();
+                btnTarikTunaiIndividual.setDisable(false);
+                btnTambahSaldoIndividual.setDisable(false);
+                tfNominalIndividual.setDisable(false);
+                tfRekeningDipilihIndividual.setText("" + globalRekening.getNoRekening());
+            }
+        });
+
+        //Klik data di rekening perusahaan
+        tblRekeningPerusahaan.getSelectionModel().selectedIndexProperty().addListener(listener -> {
+            if (tblRekeningPerusahaan.getSelectionModel().getSelectedItem() != null) {
+                globalRekening = tblRekeningPerusahaan.getSelectionModel().getSelectedItem();
+                btnTarikTunaiPerusahaan.setDisable(false);
+                btnTambahSaldoPerusahaan.setDisable(false);
+                tfNominalPerusahaan.setDisable(false);
+                tfRekeningDipilihPerusahaan.setText("" + globalRekening.getNoRekening());
             }
         });
     }

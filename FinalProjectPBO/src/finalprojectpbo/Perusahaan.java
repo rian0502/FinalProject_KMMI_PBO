@@ -35,12 +35,16 @@ public class Perusahaan extends Nasabah{
 
     @Override
     public void print(){
-        System.out.println("Nib  : " + getNib());
-        System.out.println("Nama Perusahan : "+getNama());
-        System.out.println("Alamat Perusahaan : "+getAlamat());
+        System.out.println("NIB                 : " + getNib());
+        System.out.println("Nama Perusahan      : "+getNama());
+        System.out.println("Alamat Perusahaan   : "+getAlamat());
         System.out.println("Rekening : ");
+        System.out.printf("No %-10s %s\n", "No Rek", "Saldo");
+        int i = 1;
         for (Rekening rek : rekening){
-            System.out.println(rek);
+            System.out.printf("%d. %-10d %.2f\n", i, rek.getNoRekening(), rek.getSaldo());
+            i++;
         }
+        System.out.println();
     }
 }

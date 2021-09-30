@@ -25,15 +25,9 @@
               <MenuItem mnemonicParsing="false" text="Close" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Transaksi">
+          <Menu mnemonicParsing="false" text="About">
             <items>
-              <MenuItem mnemonicParsing="false" text="Tambah Saldo" />
-                  <MenuItem mnemonicParsing="false" text="Tarik Tunai" />
-            </items>
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <items>
-              <MenuItem mnemonicParsing="false" text="About" />
+              <MenuItem fx:id="btnHelp" mnemonicParsing="false" onAction="#handleButtonHelp" text="Github" />
             </items>
           </Menu>
         </menus>
@@ -121,6 +115,11 @@
                                                             <TextField fx:id="tfNominalIndividual" layoutX="245.0" layoutY="86.0" prefHeight="38.0" prefWidth="210.0" promptText="Nominal" />
                                                             <Button fx:id="btnTarikTunaiIndividual" layoutX="245.0" layoutY="178.0" mnemonicParsing="false" onAction="#handleTarikTunaiIndividual" prefHeight="38.0" prefWidth="210.0" text="Tarik Tunai" />
                                                             <Button fx:id="btnTambahSaldoIndividual" layoutX="245.0" layoutY="132.0" mnemonicParsing="false" onAction="#handleTambahSaldoIndividual" prefHeight="38.0" prefWidth="210.0" text="Tambah Saldo" />
+                                                            <Label fx:id="lblTarikTambahIndividu" layoutX="245.0" layoutY="226.0" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="Segoe UI" size="18.0" />
+                                                               </font>
+                                                            </Label>
                                                          </children>
                                                       </AnchorPane>
                                                    </children>
@@ -212,6 +211,11 @@
                                                             <TextField fx:id="tfNominalPerusahaan" layoutX="245.0" layoutY="86.0" prefHeight="38.0" prefWidth="210.0" promptText="Nominal" />
                                                             <Button fx:id="btnTarikTunaiPerusahaan" layoutX="245.0" layoutY="178.0" mnemonicParsing="false" onAction="#handleTarikTunaiPerusahaan" prefHeight="38.0" prefWidth="210.0" text="Tarik Tunai" />
                                                             <Button fx:id="btnTambahSaldoPerusahaan" layoutX="245.0" layoutY="132.0" mnemonicParsing="false" onAction="#handleTambahSaldoPerusahaan" prefHeight="38.0" prefWidth="210.0" text="Tambah Saldo" />
+                                                            <Label fx:id="lblTambahTarikPerusahaan" layoutX="245.0" layoutY="226.0" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="Segoe UI" size="18.0" />
+                                                               </font>
+                                                            </Label>
                                                          </children>
                                                       </AnchorPane>
                                                    </children>
