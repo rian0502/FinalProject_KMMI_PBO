@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:sqlite:D:\Java\FinalProject\FinalProject_KMMI_PBO\FinalProjectPBO\src\finalprojectpbo\database\Koperasi.db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="Koperasi [2]" uuid="e88f31e3-40c4-489c-ae1a-acd614c58d4b">
+      <driver-ref>sqlite.xerial</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:C:\Users\LENOVO\Documents\GitHub\FinalProject_KMMI_PBO\FinalProjectPBO\src\finalprojectpbo\database\Koperasi.db</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>

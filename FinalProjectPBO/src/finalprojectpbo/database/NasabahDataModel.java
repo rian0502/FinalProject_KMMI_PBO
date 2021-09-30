@@ -11,13 +11,13 @@ import java.util.ArrayList;
 
 
 public class NasabahDataModel {
-    private  final Connection connection ;
+    public final Connection connection ;
 
     public NasabahDataModel() {
-        this.connection = DBHelper.getConnetion();
+        this.connection = DBHelper.getConnection();
     }
-    public void addIndvidual(Individu individu){
 
+    public void addIndvidual(Individu individu){
         try {
             String sqlNasabah = "INSERT INTO Nasabah (id_nasabah,nama,alamat)"+" VALUES (?,?,?)";
             String sqlIndividual = "INSERT INTO individual (id_nasabah,nik,npwp)"+" VALUES (?,?,?)";
@@ -77,15 +77,14 @@ public class NasabahDataModel {
     }
     public ObservableList<Individu> getIndividu(){
         ObservableList<Individu> data = FXCollections.observableArrayList();
-       try{
-
-           String sql = "SELECT 'id_nasabah', 'nama', 'alamat', 'nik', 'npwp', "+
-                        "FROM 'Nasabah' NATURAL JOIN 'individual' "+
-                        "ORDER BY name";
+        String sql = "SELECT id_nasabah, nama, alamat, nik, npwp "+
+                "FROM Nasabah NATURAL JOIN individual "+
+                "ORDER BY nama";
+        try{
            ResultSet resultSet = connection.createStatement().executeQuery(sql);
            while (resultSet.next()){
-               String sqlRekening = "SELECT 'noRekening','saldo','id_nasabah' "+
-                       "FROM 'Rekening' WHERE nasabah_id "+ resultSet.getInt(1);
+               String sqlRekening = "SELECT noRekening, saldo, id_nasabah "+
+                       "FROM Rekening WHERE id_nasabah="+ resultSet.getInt(1);
                ResultSet rsRekening = connection.createStatement().executeQuery(sqlRekening);
                ArrayList<Rekening> rekenings = new ArrayList<>();
                while (rsRekening.next()){
@@ -100,7 +99,7 @@ public class NasabahDataModel {
        }
         return data;
     }
-    public ObservableList<Perusahaan> getPersuahaan(){
+    public ObservableList<Perusahaan> getPerusahaan(){
         ObservableList<Perusahaan> data = FXCollections.observableArrayList();
         try{
             String sql = "SELECT 'id_nasabah', 'nama', 'alamat', 'nib'"+
@@ -127,9 +126,9 @@ public class NasabahDataModel {
     public ObservableList<Rekening>getRekening(int ID){
         ObservableList<Rekening> data = FXCollections.observableArrayList();
         try {
-            String sql = "SELECT 'noRekening', 'saldo' "+
-                    "FROM 'Rekening' "+
-                    "WHERE id_nasabah"+ID;
+            String sql = "SELECT noRekening, saldo "+
+                    "FROM Rekening "+
+                    "WHERE id_nasabah="+ID;
             ResultSet resultSet  = connection.createStatement().executeQuery(sql);
             while (resultSet.next()){
                 data.add(new Rekening(resultSet.getInt(1),resultSet.getDouble(2)));
@@ -140,22 +139,18 @@ public class NasabahDataModel {
         return data;
     }
 
-    public int nextRekeningID(){
-        try {
-            String sql = "SELECT MAX id_nasabah FROM Rekening ";
-            ResultSet resultSet  = connection.createStatement().executeQuery(sql);
-            while (resultSet.next()){
-                return resultSet.getInt(1)==0 ? 1000001 : resultSet.getInt(1)+1;
-            }
-        }
-        catch (SQLException throwables) {
-            throwables.printStackTrace();
+    public int nextNasabahID() throws SQLException{
+        String sql = "SELECT MAX (id_nasabah) FROM Nasabah";
+        ResultSet resultSet  = connection.createStatement().executeQuery(sql);
+        while (resultSet.next()){
+            return resultSet.getInt(1)==0 ? 1000001 : resultSet.getInt(1)+1;
         }
         return 1000001;
     }
+
     public int nextNoRekening(int ID){
         try {
-            String sql = "SELECT MAX noRekening FROM Rekening WHERE id_nasabh="+ID;
+            String sql = "SELECT MAX (noRekening) FROM Rekening WHERE id_nasabah="+ID;
             ResultSet resultSet  = connection.createStatement().executeQuery(sql);
             while (resultSet.next()){
                 return resultSet.getInt(1)+1;
@@ -167,4 +162,14 @@ public class NasabahDataModel {
         return 0;
     }
 
+    public void addRekening(int holderId, Rekening rek) throws SQLException {
+        String insertNasabah = "INSERT INTO Rekening (id_nasabah, noRekening, saldo)"
+                + " VALUES (?, ?, ?)";
+
+        PreparedStatement preparedRekening = connection.prepareStatement(insertNasabah);
+        preparedRekening.setInt(1, holderId);
+        preparedRekening.setInt(2, rek.getNoRekening());
+        preparedRekening.setDouble(3, rek.getSaldo());
+        preparedRekening.execute();
+    }
 }
