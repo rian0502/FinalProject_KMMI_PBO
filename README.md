@@ -1,5 +1,18 @@
 # FinalProject_KMMI_PBO
 
+Tugas KMMI PBO tentang kelas Diagram
+
+Anggota:
+Muhammad Febrian Hasibuan 2017051033
+Alif Akbar Kartadinata 2017051049
+Miftahul Huda Guntara 2015061038
+
+Pembagian Tugas:
+- Miftahul: Menginisialisasi dan mengembangkan class yang digunakan dalam project
+- Febrian : Membuat dan menghubungkan program dengan database SQLite
+- Alif : Mendesain dan membuat GUI menggunakan JafaFX dan Scene Builder
+
+
     classDiagram
         Nasabah <|-- Individual
         Nasabah <|-- Perusahaan
