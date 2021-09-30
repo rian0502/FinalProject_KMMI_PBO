@@ -113,10 +113,14 @@
                                                             <Insets right="10.0" />
                                                          </HBox.margin>
                                                          <children>
-                                                            <TextField fx:id="tfIDNasabahBaruIndividual" disable="true" layoutX="101.0" layoutY="40.0" prefHeight="38.0" prefWidth="268.0" promptText="ID Nasabah" />
-                                                            <TextField fx:id="tfNoRekBaruIndividual" disable="true" layoutX="101.0" layoutY="86.0" prefHeight="38.0" prefWidth="268.0" promptText="Nomor Rekening Baru" />
-                                                            <TextField fx:id="tfSaldoRekBaruIndividual" layoutX="101.0" layoutY="132.0" prefHeight="38.0" prefWidth="268.0" promptText="Saldo Rekening Baru" />
-                                                            <Button fx:id="btnTambahRekBaruIndividual" layoutX="101.0" layoutY="178.0" mnemonicParsing="false" onAction="#handleTambahRekBaruIndividual" prefHeight="38.0" prefWidth="268.0" text="Tambah Rekening Baru" />
+                                                            <TextField fx:id="tfIDNasabahBaruIndividual" disable="true" layoutX="17.0" layoutY="40.0" prefHeight="38.0" prefWidth="210.0" promptText="ID Nasabah" />
+                                                            <TextField fx:id="tfNoRekBaruIndividual" disable="true" layoutX="17.0" layoutY="86.0" prefHeight="38.0" prefWidth="210.0" promptText="Nomor Rekening Baru" />
+                                                            <TextField fx:id="tfSaldoRekBaruIndividual" layoutX="17.0" layoutY="132.0" prefHeight="38.0" prefWidth="210.0" promptText="Saldo Rekening Baru" />
+                                                            <Button fx:id="btnTambahRekBaruIndividual" layoutX="17.0" layoutY="178.0" mnemonicParsing="false" onAction="#handleTambahRekBaruIndividual" prefHeight="38.0" prefWidth="210.0" text="Tambah Rekening Baru" />
+                                                            <TextField fx:id="tfRekeningDipilihIndividual" disable="true" layoutX="245.0" layoutY="40.0" prefHeight="38.0" prefWidth="210.0" promptText="Rekening Dipilih" />
+                                                            <TextField fx:id="tfNominalIndividual" layoutX="245.0" layoutY="86.0" prefHeight="38.0" prefWidth="210.0" promptText="Nominal" />
+                                                            <Button fx:id="btnTarikTunaiIndividual" layoutX="245.0" layoutY="178.0" mnemonicParsing="false" onAction="#handleTarikTunaiIndividual" prefHeight="38.0" prefWidth="210.0" text="Tarik Tunai" />
+                                                            <Button fx:id="btnTambahSaldoIndividual" layoutX="245.0" layoutY="132.0" mnemonicParsing="false" onAction="#handleTambahSaldoIndividual" prefHeight="38.0" prefWidth="210.0" text="Tambah Saldo" />
                                                          </children>
                                                       </AnchorPane>
                                                    </children>

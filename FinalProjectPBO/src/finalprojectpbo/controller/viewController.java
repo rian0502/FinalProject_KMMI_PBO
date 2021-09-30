@@ -104,6 +104,18 @@ public class viewController implements Initializable {
     private Button btnTambahRekBaruIndividual;
 
     @FXML
+    private TextField tfRekeningDipilihIndividual;
+
+    @FXML
+    private TextField tfNominalIndividual;
+
+    @FXML
+    private Button btnTarikTunaiIndividual;
+
+    @FXML
+    private Button btnTambahSaldoIndividual;
+
+    @FXML
     private TextField tfIDPerusahaan;
 
     @FXML
@@ -252,6 +264,16 @@ public class viewController implements Initializable {
 
     @FXML
     void handleTambahRekBaruPerusahaan(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handleTambahSaldoIndividual(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handleTarikTunaiIndividual(ActionEvent event) {
 
     }
 
