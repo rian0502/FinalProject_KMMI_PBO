@@ -185,6 +185,18 @@ public class viewController implements Initializable {
     private Button btnTambahRekBaruPerusahaan;
 
     @FXML
+    private TextField tfRekeningDipilihPerusahaan;
+
+    @FXML
+    private TextField tfNominalPerusahaan;
+
+    @FXML
+    private Button btnTarikTunaiPerusahaan;
+
+    @FXML
+    private Button btnTambahSaldoPerusahaan;
+
+    @FXML
     private Label lblDBStatus;
 
     private NasabahDataModel nadamod;
@@ -201,8 +213,13 @@ public class viewController implements Initializable {
     }
 
     @FXML
-    void handleHapusPerusahaan(ActionEvent event) {
-
+    void handleHapusPerusahaan(ActionEvent event) throws SQLException {
+        tfIDPerusahaan.setText("" + nadamod.nextNasabahID());
+        tfNoRekPerusahaan.setText(tfIDIndividual.getText() + "01");
+        tfNamaPerusahaan.setText("");
+        tfAlamatPerusahaan.setText("");
+        tfNIBPerusahaan.setText("");
+        tfSaldoPerusahaan.setText("");
     }
 
     @FXML
@@ -222,7 +239,16 @@ public class viewController implements Initializable {
 
     @FXML
     void handlePerbaruiTabelPerusahaan(ActionEvent event) {
-
+        ObservableList<Perusahaan> data = nadamod.getPerusahaan();
+        colIDPerusahaan.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colNamaPerusahaan.setCellValueFactory(new PropertyValueFactory<>("nama"));
+        colAlamatPerusahaan.setCellValueFactory(new PropertyValueFactory<>("alamat"));
+        colNIB.setCellValueFactory(new PropertyValueFactory<>("nib"));
+        colJumAkunPerusahaan.setCellValueFactory(new PropertyValueFactory<>("rekNum"));
+        tblDataPerusahaan.setItems(null);
+        tblDataPerusahaan.setItems(data);
+        btnTambahRekBaruPerusahaan.setDisable(true);
+        lblAddStatusPerusahaan.setText("");
     }
 
     @FXML
@@ -249,7 +275,23 @@ public class viewController implements Initializable {
 
     @FXML
     void handleTambahNasabahPerusahaan(ActionEvent event) {
+        Perusahaan perusahaan = new Perusahaan(
+                Integer.parseInt(tfIDPerusahaan.getText()),
+                tfNamaPerusahaan.getText(),
+                tfAlamatPerusahaan.getText(),
+                tfNIBPerusahaan.getText(),
+                new Rekening(Integer.parseInt(tfNoRekPerusahaan.getText()),
+                        Double.parseDouble(tfSaldoPerusahaan.getText()))
+        );
 
+        try {
+            nadamod.addPerusahaan(perusahaan);
+            btnPerbaruiPerusahaan.fire();
+            btnHapusPerusahaan.fire();
+            lblAddStatusPerusahaan.setText("Akun Sukses Dibuat!");
+        } catch (Exception e) {
+            lblAddStatusPerusahaan.setText("Akun Gagal Dibuat!");
+        }
     }
 
     @FXML
@@ -263,8 +305,13 @@ public class viewController implements Initializable {
     }
 
     @FXML
-    void handleTambahRekBaruPerusahaan(ActionEvent event) {
-
+    void handleTambahRekBaruPerusahaan(ActionEvent event) throws SQLException{
+        Rekening rekening = new Rekening(Integer.parseInt(tfNoRekBaruPerusahaan.getText()),
+                Double.parseDouble(tfSaldoRekBaruPerusahaan.getText()));
+        nadamod.addRekening(Integer.parseInt(tfIDNasabahBaruPerusahaan.getText()), rekening);
+        btnPerbaruiPerusahaan.fire();
+        tfSaldoRekBaruPerusahaan.setText("");
+        lihatDataRekeningPerusahaan(Integer.parseInt(tfIDNasabahBaruPerusahaan.getText()));
     }
 
     @FXML
@@ -277,6 +324,16 @@ public class viewController implements Initializable {
 
     }
 
+    @FXML
+    void handleTambahSaldoPerusahaan(ActionEvent event) {
+
+    }
+
+    @FXML
+    void handleTarikTunaiPerusahaan(ActionEvent event) {
+
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
@@ -285,6 +342,8 @@ public class viewController implements Initializable {
             lblDBStatus.setText(nadamod.connection == null ? "Not Connected" : "Connected");
             btnHapusIndividual.fire();
             btnPerbaruiIndividual.fire();
+            btnHapusPerusahaan.fire();
+            btnPerbaruiPerusahaan.fire();
         } catch (Exception es) {
             System.out.println("Error");
         }
@@ -303,6 +362,19 @@ public class viewController implements Initializable {
             }
         });
 
+        tblDataPerusahaan.getSelectionModel().selectedIndexProperty().addListener(listener -> {
+            if (tblDataPerusahaan.getSelectionModel().getSelectedItem() != null) {
+                Perusahaan perusahaan = tblDataPerusahaan.getSelectionModel().getSelectedItem();
+                lihatDataRekeningPerusahaan(perusahaan.getId());
+                btnTambahRekBaruPerusahaan.setDisable(false);
+                tfIDNasabahBaruPerusahaan.setText("" + perusahaan.getId());
+                try {
+                    tfNoRekBaruPerusahaan.setText("" + nadamod.nextNoRekening(perusahaan.getId()));
+                } catch (Exception ex) {
+                    System.out.println("Gagal load data rekening");
+                }
+            }
+        });
     }
 
     public void lihatDataRekeningIndividu(int id) {
@@ -311,5 +383,13 @@ public class viewController implements Initializable {
         colSaldoIndividu.setCellValueFactory(new PropertyValueFactory<>("saldo"));
         tblRekeningIndividu.setItems(null);
         tblRekeningIndividu.setItems(data);
+    }
+
+    public void lihatDataRekeningPerusahaan(int id) {
+        ObservableList<Rekening> data = nadamod.getRekening(id);
+        colNumRekPerusahaan.setCellValueFactory(new PropertyValueFactory<>("noRekening"));
+        colSaldoPerusahaan.setCellValueFactory(new PropertyValueFactory<>("saldo"));
+        tblRekeningPerusahaan.setItems(null);
+        tblRekeningPerusahaan.setItems(data);
     }
 }

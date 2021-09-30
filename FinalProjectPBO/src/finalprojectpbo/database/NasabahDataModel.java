@@ -102,20 +102,20 @@ public class NasabahDataModel {
     public ObservableList<Perusahaan> getPerusahaan(){
         ObservableList<Perusahaan> data = FXCollections.observableArrayList();
         try{
-            String sql = "SELECT 'id_nasabah', 'nama', 'alamat', 'nib'"+
-                    "FROM 'Nasabah' NATURAL JOIN 'perusahaan' "+
-                    "ORDER BY name";
+            String sql = "SELECT id_nasabah, nama, alamat, nib "+
+                    "FROM Nasabah NATURAL JOIN perusahaan "+
+                    "ORDER BY nama";
             ResultSet resultSet = connection.createStatement().executeQuery(sql);
             while (resultSet.next()){
-                String sqlRekening = "SELECT 'noRekening','saldo','id_nasabah' "+
-                        "FROM 'Rekening' WHERE nasabah_id "+ resultSet.getInt(1);
+                String sqlRekening = "SELECT noRekening, saldo, id_nasabah "+
+                        "FROM Rekening WHERE id_nasabah = " + resultSet.getInt(1);
                 ResultSet rsRekening = connection.createStatement().executeQuery(sqlRekening);
                 ArrayList<Rekening> rekenings = new ArrayList<>();
                 while (rsRekening.next()){
                     rekenings.add(new Rekening(rsRekening.getInt(1),rsRekening.getDouble(2)));
                 }
-                data.add(new Perusahaan(rsRekening.getInt(1),rsRekening.getString(2),rsRekening.getString(3)
-                ,rsRekening.getString(4), rekenings));
+                data.add(new Perusahaan(resultSet.getInt(1),resultSet.getString(2),resultSet.getString(3)
+                ,resultSet.getString(4), rekenings));
             }
 
         } catch (SQLException throwables) {
