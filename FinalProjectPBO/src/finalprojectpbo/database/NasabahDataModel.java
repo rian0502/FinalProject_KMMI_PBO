@@ -77,15 +77,14 @@ public class NasabahDataModel {
     }
     public ObservableList<Individu> getIndividu(){
         ObservableList<Individu> data = FXCollections.observableArrayList();
-       try{
-
-           String sql = "SELECT 'id_nasabah', 'nama', 'alamat', 'nik', 'npwp', "+
-                        "FROM 'Nasabah' NATURAL JOIN 'individual' "+
-                        "ORDER BY name";
+        String sql = "SELECT id_nasabah, nama, alamat, nik, npwp "+
+                "FROM Nasabah NATURAL JOIN individual "+
+                "ORDER BY nama";
+        try{
            ResultSet resultSet = connection.createStatement().executeQuery(sql);
            while (resultSet.next()){
-               String sqlRekening = "SELECT 'noRekening','saldo','id_nasabah' "+
-                       "FROM 'Rekening' WHERE nasabah_id "+ resultSet.getInt(1);
+               String sqlRekening = "SELECT noRekening, saldo, id_nasabah "+
+                       "FROM Rekening WHERE id_nasabah="+ resultSet.getInt(1);
                ResultSet rsRekening = connection.createStatement().executeQuery(sqlRekening);
                ArrayList<Rekening> rekenings = new ArrayList<>();
                while (rsRekening.next()){

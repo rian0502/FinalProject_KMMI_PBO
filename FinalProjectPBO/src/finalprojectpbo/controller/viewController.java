@@ -178,8 +178,14 @@ public class viewController implements Initializable {
     private NasabahDataModel nadamod;
 
     @FXML
-    void handleHapusIndividual(ActionEvent event) {
-
+    void handleHapusIndividual(ActionEvent event) throws SQLException {
+        tfIDIndividual.setText("" + nadamod.nextNasabahID());
+        tfNoRekIndividual.setText(tfIDIndividual.getText() + "01");
+        tfNamaIndividual.setText("");
+        tfAlamatIndividual.setText("");
+        tfNIKIndividual.setText("");
+        tfNPWPIndividual.setText("");
+        tfSaldoRekIndividual.setText("");
     }
 
     @FXML
@@ -189,7 +195,16 @@ public class viewController implements Initializable {
 
     @FXML
     void handlePerbaruiTabelIndividual(ActionEvent event) {
-
+        ObservableList<Individu> data = nadamod.getIndividu();
+        colIDIndividu.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colNamaIndividu.setCellValueFactory(new PropertyValueFactory<>("nama"));
+        colAlamatIndividu.setCellValueFactory(new PropertyValueFactory<>("alamat"));
+        colNIK.setCellValueFactory(new PropertyValueFactory<>("nik"));
+        colNPWP.setCellValueFactory(new PropertyValueFactory<>("npwp"));
+        colJumAkunIndividu.setCellValueFactory(new PropertyValueFactory<>("rekNum"));
+        tblDataIndividu.setItems(null);
+        tblDataIndividu.setItems(data);
+        btnTambahRekBaruIndividual.setDisable(true);
     }
 
     @FXML
