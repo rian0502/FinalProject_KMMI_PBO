@@ -31,9 +31,9 @@ public class Main extends Application {
 //        Scanner scan = new Scanner(System.in);
 //        Long a = scan.nextLong();
 //        Long b = scan.nextLong();
-//        Individu indv = new Individu(4, "Alif Akbar", "Pringsewu", a, b, new Rekening(123123, 23123.0));
+//        Individu indv = new Individu(5, "Alif Akbar", "Pringsewu", a, b, new Rekening(123323123, 23123.0));
 //        nadamod.addIndvidual(indv);
-//        launch(args);
+        launch(args);
 //        DBHelper.getConnection();
     }
     

@@ -178,13 +178,8 @@ public class viewController implements Initializable {
     private NasabahDataModel nadamod;
 
     @FXML
-    void handleHapusIndividual(ActionEvent event) { // clear form
-        tfIDIndividual.setText(""+nadamod.nextRekeningID());
-        tfNoRekIndividual.setText(tfIDIndividual.getText() + "01");
-        tfAlamatIndividual.setText("");
-        tfNIKIndividual.setText("");
-        tfNPWPIndividual.setText("");
-        tfSaldoRekIndividual.setText("");
+    void handleHapusIndividual(ActionEvent event) {
+
     }
 
     @FXML
@@ -194,16 +189,7 @@ public class viewController implements Initializable {
 
     @FXML
     void handlePerbaruiTabelIndividual(ActionEvent event) {
-        ObservableList<Individu> data = nadamod.getIndividu();
-        colIDIndividu.setCellValueFactory(new PropertyValueFactory<>("id"));
-        colNamaIndividu.setCellValueFactory(new PropertyValueFactory<>("nama"));
-        colAlamatIndividu.setCellValueFactory(new PropertyValueFactory<>("alamat"));
-        colNIK.setCellValueFactory(new PropertyValueFactory<>("nik"));
-        colNPWP.setCellValueFactory(new PropertyValueFactory<>("npwp"));
-        colJumAkunIndividu.setCellValueFactory(new PropertyValueFactory<>("rekNum"));
-        tblDataIndividu.setItems(null);
-        tblDataIndividu.setItems(data);
-        btnTambahRekBaruIndividual.setDisable(true);
+
     }
 
     @FXML
@@ -212,20 +198,23 @@ public class viewController implements Initializable {
     }
 
     @FXML
-    void handleTambahNasabahIndividual(ActionEvent event) throws SQLException {
-        Individu holderIndividu = new Individu(
-            Integer.parseInt(tfIDIndividual.getText()),
-            tfNamaIndividual.getText(),
-            tfAlamatIndividual.getText(),
-            Long.parseLong(tfNIKIndividual.getText()),
-            Long.parseLong(tfNPWPIndividual.getText()),
-            new Rekening(Integer.parseInt(tfNoRekIndividual.getText()), Double.parseDouble(tfSaldoRekIndividual.getText()))
+    void handleTambahNasabahIndividual(ActionEvent event) {
+        Individu individu = new Individu(
+                Integer.parseInt(tfIDIndividual.getText()),
+                tfNamaIndividual.getText(),
+                tfAlamatIndividual.getText(),
+                Long.parseLong(tfNIKIndividual.getText()),
+                Long.parseLong(tfNPWPIndividual.getText()),
+                new Rekening(Integer.parseInt(tfNoRekIndividual.getText()),
+                        Double.parseDouble(tfSaldoRekIndividual.getText()))
         );
 
-        nadamod.addIndvidual(holderIndividu);
-        lblAddStatusindividual.setText("Account berhasil dibuat");
-        btnPerbaruiIndividual.fire();
-        btnHapusIndividual.fire();
+        try {
+            nadamod.addIndvidual(individu);
+            lblAddStatusindividual.setText("Akun Sukses Dibuat!");
+        } catch (Exception e) {
+            lblAddStatusindividual.setText("Akun Gagal Dibuat!");
+        }
     }
 
     @FXML
@@ -234,38 +223,26 @@ public class viewController implements Initializable {
     }
 
     @FXML
-    void handleTambahRekBaruIndividual(ActionEvent event) throws SQLException{
-        Rekening rek = new Rekening(Integer.parseInt(tfNoRekBaruIndividual.getText()),
-                Double.parseDouble(tfSaldoRekBaruIndividual.getText()));
-        nadamod.addRekening(Integer.parseInt(tfIDNasabahBaruIndividual.getText()), rek);
-        lihatDataRekeningIndividu(Integer.parseInt(tfIDNasabahBaruIndividual.getText()));
-        btnPerbaruiIndividual.fire();
-        tfSaldoRekBaruPerusahaan.setText("");
+    void handleTambahRekBaruIndividual(ActionEvent event) {
+
     }
 
     @FXML
     void handleTambahRekBaruPerusahaan(ActionEvent event) {
 
     }
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-
-        //DB Status
         nadamod = new NasabahDataModel();
         lblDBStatus.setText(nadamod.connection == null ? "Not Connected" : "Connected");
-        //New
-        btnHapusIndividual.fire(); //Clear and also show id nasabah with nomor rekening
-        btnPerbaruiIndividual.fire(); //Show data in table
+        try {
+            tfIDIndividual.setText("" + nadamod.nextNasabahID());
+            tfNoRekIndividual.setText(tfIDIndividual.getText() + "01");
+        } catch (SQLException es) {
+            System.out.println("Error");
+        }
 
-    }
-
-    public void lihatDataRekeningIndividu(int id) {
-        ObservableList<Rekening> data = nadamod.getRekening(id);
-        colNumRekIndividu.setCellValueFactory(new PropertyValueFactory<>("noRekening"));
-        colSaldoIndividu.setCellValueFactory(new PropertyValueFactory<>("saldo"));
-        tblRekeningIndividu.setItems(null);
-        tblRekeningIndividu.setItems(data);
     }
 }

@@ -140,22 +140,18 @@ public class NasabahDataModel {
         return data;
     }
 
-    public int nextRekeningID(){
-        try {
-            String sql = "SELECT MAX id_nasabah FROM Rekening ";
-            ResultSet resultSet  = connection.createStatement().executeQuery(sql);
-            while (resultSet.next()){
-                return resultSet.getInt(1)==0 ? 1000001 : resultSet.getInt(1)+1;
-            }
-        }
-        catch (SQLException throwables) {
-            throwables.printStackTrace();
+    public int nextNasabahID() throws SQLException{
+        String sql = "SELECT MAX (id_nasabah) FROM Nasabah";
+        ResultSet resultSet  = connection.createStatement().executeQuery(sql);
+        while (resultSet.next()){
+            return resultSet.getInt(1)==0 ? 1000001 : resultSet.getInt(1)+1;
         }
         return 1000001;
     }
+
     public int nextNoRekening(int ID){
         try {
-            String sql = "SELECT MAX noRekening FROM Rekening WHERE id_nasabh="+ID;
+            String sql = "SELECT MAX (noRekening) FROM Rekening WHERE id_nasabh="+ID;
             ResultSet resultSet  = connection.createStatement().executeQuery(sql);
             while (resultSet.next()){
                 return resultSet.getInt(1)+1;
