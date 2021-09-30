@@ -205,6 +205,7 @@ public class viewController implements Initializable {
         tblDataIndividu.setItems(null);
         tblDataIndividu.setItems(data);
         btnTambahRekBaruIndividual.setDisable(true);
+        lblAddStatusindividual.setText("");
     }
 
     @FXML
@@ -226,6 +227,8 @@ public class viewController implements Initializable {
 
         try {
             nadamod.addIndvidual(individu);
+            btnPerbaruiIndividual.fire();
+            btnHapusIndividual.fire();
             lblAddStatusindividual.setText("Akun Sukses Dibuat!");
         } catch (Exception e) {
             lblAddStatusindividual.setText("Akun Gagal Dibuat!");
@@ -238,8 +241,13 @@ public class viewController implements Initializable {
     }
 
     @FXML
-    void handleTambahRekBaruIndividual(ActionEvent event) {
-
+    void handleTambahRekBaruIndividual(ActionEvent event) throws SQLException{
+        Rekening rekening = new Rekening(Integer.parseInt(tfNoRekBaruIndividual.getText()),
+                Double.parseDouble(tfSaldoRekBaruIndividual.getText()));
+        nadamod.addRekening(Integer.parseInt(tfIDNasabahBaruIndividual.getText()), rekening);
+        btnPerbaruiIndividual.fire();
+        tfSaldoRekBaruIndividual.setText("");
+        lihatDataRekeningIndividu(Integer.parseInt(tfIDNasabahBaruIndividual.getText()));
     }
 
     @FXML
@@ -253,9 +261,9 @@ public class viewController implements Initializable {
         try {
             nadamod = new NasabahDataModel();
             lblDBStatus.setText(nadamod.connection == null ? "Not Connected" : "Connected");
-            tfIDIndividual.setText("" + nadamod.nextNasabahID());
-            tfNoRekIndividual.setText(tfIDIndividual.getText() + "01");
-        } catch (SQLException es) {
+            btnHapusIndividual.fire();
+            btnPerbaruiIndividual.fire();
+        } catch (Exception es) {
             System.out.println("Error");
         }
 
