@@ -13,6 +13,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+import java.util.Scanner;
+
 public class Main extends Application {
     
     @Override
@@ -25,10 +27,14 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-        NasabahDataModel nadamod = new NasabahDataModel();
-        Individu indv = new Individu(1, "Alif Akbar", "Pringsewu", 20102L, 123123L, new Rekening(1231231, 23123.0));
+//        NasabahDataModel nadamod = new NasabahDataModel();
+//        Scanner scan = new Scanner(System.in);
+//        Long a = scan.nextLong();
+//        Long b = scan.nextLong();
+//        Individu indv = new Individu(4, "Alif Akbar", "Pringsewu", a, b, new Rekening(123123, 23123.0));
+//        nadamod.addIndvidual(indv);
 //        launch(args);
-        DBHelper.getConnection();
+//        DBHelper.getConnection();
     }
     
 }
