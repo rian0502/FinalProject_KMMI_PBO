@@ -5,10 +5,6 @@
  */
 package finalprojectpbo;
 
-import java.sql.Connection;
-import java.sql.SQLException;
-import java.util.ArrayList;
-
 import finalprojectpbo.database.DBHelper;
 import finalprojectpbo.database.NasabahDataModel;
 import javafx.application.Application;
@@ -29,8 +25,10 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-        launch(args);
-//        DBHelper.getConnection();
+        NasabahDataModel nadamod = new NasabahDataModel();
+        Individu indv = new Individu(1, "Alif Akbar", "Pringsewu", 20102L, 123123L, new Rekening(1231231, 23123.0));
+//        launch(args);
+        DBHelper.getConnection();
     }
     
 }

@@ -78,14 +78,14 @@
                                              <children>
                                                 <AnchorPane prefHeight="348.0" prefWidth="934.0">
                                                    <children>
-                                                      <TableView prefHeight="384.0" prefWidth="934.0">
+                                                      <TableView fx:id="tblDataIndividu" prefHeight="384.0" prefWidth="934.0">
                                                         <columns>
-                                                          <TableColumn prefWidth="95.0" text="ID" />
-                                                          <TableColumn prefWidth="231.0" text="Nama" />
-                                                            <TableColumn prefWidth="157.0" text="Alamat" />
-                                                            <TableColumn prefWidth="175.0" text="NIK" />
-                                                            <TableColumn prefWidth="168.0" text="NPWP" />
-                                                            <TableColumn prefWidth="107.0" text="Jumlah Akun" />
+                                                          <TableColumn fx:id="colIDIndividu" prefWidth="95.0" text="ID" />
+                                                          <TableColumn fx:id="colNamaIndividu" prefWidth="231.0" text="Nama" />
+                                                            <TableColumn fx:id="colAlamatIndividu" prefWidth="157.0" text="Alamat" />
+                                                            <TableColumn fx:id="colNIK" prefWidth="175.0" text="NIK" />
+                                                            <TableColumn fx:id="colNPWP" prefWidth="168.0" text="NPWP" />
+                                                            <TableColumn fx:id="colJumAkunIndividu" prefWidth="107.0" text="Jumlah Akun" />
                                                         </columns>
                                                       </TableView>
                                                    </children>
@@ -97,10 +97,10 @@
                                                    <children>
                                                       <AnchorPane prefHeight="262.0" prefWidth="465.0">
                                                          <children>
-                                                            <TableView prefHeight="261.0" prefWidth="465.0">
+                                                            <TableView fx:id="tblRekeningIndividu" prefHeight="261.0" prefWidth="465.0">
                                                               <columns>
-                                                                <TableColumn prefWidth="226.0" text="Nomor Rekening" />
-                                                                <TableColumn prefWidth="238.0" text="Saldo" />
+                                                                <TableColumn fx:id="colNumRekIndividu" prefWidth="226.0" text="Nomor Rekening" />
+                                                                <TableColumn fx:id="colSaldoIndividu" prefWidth="238.0" text="Saldo" />
                                                               </columns>
                                                             </TableView>
                                                          </children>
@@ -166,13 +166,13 @@
                                              <children>
                                                 <AnchorPane prefHeight="348.0" prefWidth="934.0">
                                                    <children>
-                                                      <TableView prefHeight="384.0" prefWidth="934.0">
+                                                      <TableView fx:id="tblDataPerusahaan" prefHeight="384.0" prefWidth="934.0">
                                                          <columns>
-                                                            <TableColumn prefWidth="95.0" text="ID" />
-                                                            <TableColumn prefWidth="255.0" text="Nama" />
-                                                            <TableColumn prefWidth="250.0" text="Alamat" />
-                                                            <TableColumn prefWidth="195.0" text="NIB" />
-                                                            <TableColumn prefWidth="138.0" text="Jumlah Akun" />
+                                                            <TableColumn fx:id="colIDPerusahaan" prefWidth="95.0" text="ID" />
+                                                            <TableColumn fx:id="colNamaPerusahaan" prefWidth="255.0" text="Nama" />
+                                                            <TableColumn fx:id="colAlamatPerusahaan" prefWidth="250.0" text="Alamat" />
+                                                            <TableColumn fx:id="colNIB" prefWidth="195.0" text="NIB" />
+                                                            <TableColumn fx:id="colJumAkunPerusahaan" prefWidth="138.0" text="Jumlah Akun" />
                                                          </columns>
                                                       </TableView>
                                                    </children>
@@ -184,10 +184,10 @@
                                                    <children>
                                                       <AnchorPane prefHeight="262.0" prefWidth="465.0">
                                                          <children>
-                                                            <TableView prefHeight="261.0" prefWidth="465.0">
+                                                            <TableView fx:id="tblRekeningPerusahaan" prefHeight="261.0" prefWidth="465.0">
                                                                <columns>
-                                                                  <TableColumn prefWidth="226.0" text="Nomor Rekening" />
-                                                                  <TableColumn prefWidth="238.0" text="Saldo" />
+                                                                  <TableColumn fx:id="colNumRekPerusahaan" prefWidth="226.0" text="Nomor Rekening" />
+                                                                  <TableColumn fx:id="colSaldoPerusahaan" prefWidth="238.0" text="Saldo" />
                                                                </columns>
                                                             </TableView>
                                                          </children>

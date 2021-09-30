@@ -11,30 +11,23 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.sun.java.swing.plaf.windows.WindowsTextAreaUI;
+import com.sun.org.apache.regexp.internal.RE;
 import finalprojectpbo.Individu;
+import finalprojectpbo.Perusahaan;
 import finalprojectpbo.Rekening;
 import finalprojectpbo.database.NasabahDataModel;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import javax.xml.ws.Holder;
 
 
 public class viewController implements Initializable {
-
-    @FXML
-    private Label lblAddStatusindividual;
-
-    @FXML
-    private Label lblAddStatusPerusahaan;
-
-    @FXML
-    private Label lblDBStatus;
-
     @FXML
     private TextField tfIDIndividual;
 
@@ -64,6 +57,39 @@ public class viewController implements Initializable {
 
     @FXML
     private Button btnHapusIndividual;
+
+    @FXML
+    private Label lblAddStatusindividual;
+
+    @FXML
+    private TableView<Individu> tblDataIndividu;
+
+    @FXML
+    private TableColumn<Individu, Integer> colIDIndividu;
+
+    @FXML
+    private TableColumn<Individu, String> colNamaIndividu;
+
+    @FXML
+    private TableColumn<Individu, String> colAlamatIndividu;
+
+    @FXML
+    private TableColumn<Individu, Long> colNIK;
+
+    @FXML
+    private TableColumn<Individu, Long> colNPWP;
+
+    @FXML
+    private TableColumn<Individu, Integer> colJumAkunIndividu;
+
+    @FXML
+    private TableView<Rekening> tblRekeningIndividu;
+
+    @FXML
+    private TableColumn<Rekening, Integer> colNumRekIndividu;
+
+    @FXML
+    private TableColumn<Rekening, Double> colSaldoIndividu;
 
     @FXML
     private TextField tfIDNasabahBaruIndividual;
@@ -105,6 +131,36 @@ public class viewController implements Initializable {
     private Button btnHapusPerusahaan;
 
     @FXML
+    private Label lblAddStatusPerusahaan;
+
+    @FXML
+    private TableView<Perusahaan> tblDataPerusahaan;
+
+    @FXML
+    private TableColumn<Perusahaan, Integer> colIDPerusahaan;
+
+    @FXML
+    private TableColumn<Perusahaan, String> colNamaPerusahaan;
+
+    @FXML
+    private TableColumn<Perusahaan, String> colAlamatPerusahaan;
+
+    @FXML
+    private TableColumn<Perusahaan, String> colNIB;
+
+    @FXML
+    private TableColumn<Perusahaan, Integer> colJumAkunPerusahaan;
+
+    @FXML
+    private TableView<Rekening> tblRekeningPerusahaan;
+
+    @FXML
+    private TableColumn<Rekening, Integer> colNumRekPerusahaan;
+
+    @FXML
+    private TableColumn<Rekening, Double> colSaldoPerusahaan;
+
+    @FXML
     private TextField tfIDNasabahBaruPerusahaan;
 
     @FXML
@@ -116,12 +172,19 @@ public class viewController implements Initializable {
     @FXML
     private Button btnTambahRekBaruPerusahaan;
 
+    @FXML
+    private Label lblDBStatus;
+
     private NasabahDataModel nadamod;
 
     @FXML
-    void handleHapusIndividual(ActionEvent event) {
+    void handleHapusIndividual(ActionEvent event) { // clear form
         tfIDIndividual.setText(""+nadamod.nextRekeningID());
         tfNoRekIndividual.setText(tfIDIndividual.getText() + "01");
+        tfAlamatIndividual.setText("");
+        tfNIKIndividual.setText("");
+        tfNPWPIndividual.setText("");
+        tfSaldoRekIndividual.setText("");
     }
 
     @FXML
@@ -131,7 +194,16 @@ public class viewController implements Initializable {
 
     @FXML
     void handlePerbaruiTabelIndividual(ActionEvent event) {
-
+        ObservableList<Individu> data = nadamod.getIndividu();
+        colIDIndividu.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colNamaIndividu.setCellValueFactory(new PropertyValueFactory<>("nama"));
+        colAlamatIndividu.setCellValueFactory(new PropertyValueFactory<>("alamat"));
+        colNIK.setCellValueFactory(new PropertyValueFactory<>("nik"));
+        colNPWP.setCellValueFactory(new PropertyValueFactory<>("npwp"));
+        colJumAkunIndividu.setCellValueFactory(new PropertyValueFactory<>("rekNum"));
+        tblDataIndividu.setItems(null);
+        tblDataIndividu.setItems(data);
+        btnTambahRekBaruIndividual.setDisable(true);
     }
 
     @FXML
@@ -162,8 +234,13 @@ public class viewController implements Initializable {
     }
 
     @FXML
-    void handleTambahRekBaruIndividual(ActionEvent event) {
-
+    void handleTambahRekBaruIndividual(ActionEvent event) throws SQLException{
+        Rekening rek = new Rekening(Integer.parseInt(tfNoRekBaruIndividual.getText()),
+                Double.parseDouble(tfSaldoRekBaruIndividual.getText()));
+        nadamod.addRekening(Integer.parseInt(tfIDNasabahBaruIndividual.getText()), rek);
+        lihatDataRekeningIndividu(Integer.parseInt(tfIDNasabahBaruIndividual.getText()));
+        btnPerbaruiIndividual.fire();
+        tfSaldoRekBaruPerusahaan.setText("");
     }
 
     @FXML
@@ -177,10 +254,18 @@ public class viewController implements Initializable {
 
         //DB Status
         nadamod = new NasabahDataModel();
-        lblDBStatus.setText(nadamod.connection == null? "Not Connected" : "Connected");
+        lblDBStatus.setText(nadamod.connection == null ? "Not Connected" : "Connected");
         //New
         btnHapusIndividual.fire(); //Clear and also show id nasabah with nomor rekening
         btnPerbaruiIndividual.fire(); //Show data in table
+
     }
-    
+
+    public void lihatDataRekeningIndividu(int id) {
+        ObservableList<Rekening> data = nadamod.getRekening(id);
+        colNumRekIndividu.setCellValueFactory(new PropertyValueFactory<>("noRekening"));
+        colSaldoIndividu.setCellValueFactory(new PropertyValueFactory<>("saldo"));
+        tblRekeningIndividu.setItems(null);
+        tblRekeningIndividu.setItems(data);
+    }
 }

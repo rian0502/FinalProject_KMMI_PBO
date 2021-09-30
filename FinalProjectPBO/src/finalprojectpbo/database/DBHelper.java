@@ -6,7 +6,7 @@ import java.sql.*;
 public class DBHelper {
 //    private static final String dbURL = "jdbc:sqlite:D:\\Java\\FinalProject\\FinalProject_KMMI_PBO\\FinalProjectPBO\\src\\finalprojectpbo\\database\\Koperasi.db";
     private static final String dbURL = "jdbc:sqlite:src\\finalprojectpbo\\database\\Koperasi.db";
-    public static Connection getConnetion(){
+    public static Connection getConnection(){
         Connection connection;
         try {
             Class.forName("org.sqlite.JDBC");

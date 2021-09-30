@@ -14,7 +14,7 @@ public class NasabahDataModel {
     public final Connection connection ;
 
     public NasabahDataModel() {
-        this.connection = DBHelper.getConnetion();
+        this.connection = DBHelper.getConnection();
     }
 
     public void addIndvidual(Individu individu){
