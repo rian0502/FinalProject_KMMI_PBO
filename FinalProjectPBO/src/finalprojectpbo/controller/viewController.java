@@ -250,14 +250,36 @@ public class viewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        nadamod = new NasabahDataModel();
-        lblDBStatus.setText(nadamod.connection == null ? "Not Connected" : "Connected");
         try {
+            nadamod = new NasabahDataModel();
+            lblDBStatus.setText(nadamod.connection == null ? "Not Connected" : "Connected");
             tfIDIndividual.setText("" + nadamod.nextNasabahID());
             tfNoRekIndividual.setText(tfIDIndividual.getText() + "01");
         } catch (SQLException es) {
             System.out.println("Error");
         }
 
+        tblDataIndividu.getSelectionModel().selectedIndexProperty().addListener(listener -> {
+            if (tblDataIndividu.getSelectionModel().getSelectedItem() != null) {
+                Individu individu =tblDataIndividu.getSelectionModel().getSelectedItem();
+                lihatDataRekeningIndividu(individu.getId());
+                btnTambahRekBaruIndividual.setDisable(false);
+                tfIDNasabahBaruIndividual.setText("" + individu.getId());
+                try {
+                    tfNoRekBaruIndividual.setText("" + nadamod.nextNoRekening(individu.getId()));
+                } catch (Exception ex) {
+                    System.out.println("Gagal load data rekening");
+                }
+            }
+        });
+
+    }
+
+    public void lihatDataRekeningIndividu(int id) {
+        ObservableList<Rekening> data = nadamod.getRekening(id);
+        colNumRekIndividu.setCellValueFactory(new PropertyValueFactory<>("noRekening"));
+        colSaldoIndividu.setCellValueFactory(new PropertyValueFactory<>("saldo"));
+        tblRekeningIndividu.setItems(null);
+        tblRekeningIndividu.setItems(data);
     }
 }

@@ -126,9 +126,9 @@ public class NasabahDataModel {
     public ObservableList<Rekening>getRekening(int ID){
         ObservableList<Rekening> data = FXCollections.observableArrayList();
         try {
-            String sql = "SELECT 'noRekening', 'saldo' "+
-                    "FROM 'Rekening' "+
-                    "WHERE id_nasabah"+ID;
+            String sql = "SELECT noRekening, saldo "+
+                    "FROM Rekening "+
+                    "WHERE id_nasabah="+ID;
             ResultSet resultSet  = connection.createStatement().executeQuery(sql);
             while (resultSet.next()){
                 data.add(new Rekening(resultSet.getInt(1),resultSet.getDouble(2)));
@@ -150,7 +150,7 @@ public class NasabahDataModel {
 
     public int nextNoRekening(int ID){
         try {
-            String sql = "SELECT MAX (noRekening) FROM Rekening WHERE id_nasabh="+ID;
+            String sql = "SELECT MAX (noRekening) FROM Rekening WHERE id_nasabah="+ID;
             ResultSet resultSet  = connection.createStatement().executeQuery(sql);
             while (resultSet.next()){
                 return resultSet.getInt(1)+1;
