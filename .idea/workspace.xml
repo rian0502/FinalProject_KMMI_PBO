@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+<<<<<<< HEAD
+    <list default="true" id="4191e457-6afd-42fa-a5f0-5cfa9fd73ac4" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/FinalProjectPBO/out/production/FinalProjectPBO/finalprojectpbo/controller/viewController.class" beforeDir="false" afterPath="$PROJECT_DIR$/FinalProjectPBO/out/production/FinalProjectPBO/finalprojectpbo/controller/viewController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinalProjectPBO/out/production/FinalProjectPBO/finalprojectpbo/view/view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/FinalProjectPBO/out/production/FinalProjectPBO/finalprojectpbo/view/view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinalProjectPBO/src/finalprojectpbo/controller/viewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/FinalProjectPBO/src/finalprojectpbo/controller/viewController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinalProjectPBO/src/finalprojectpbo/view/view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/FinalProjectPBO/src/finalprojectpbo/view/view.fxml" afterDir="false" />
+    </list>
+=======
+<<<<<<< Updated upstream
+    <list default="true" id="4191e457-6afd-42fa-a5f0-5cfa9fd73ac4" name="Changes" comment="" />
+=======
+    <list default="true" id="4191e457-6afd-42fa-a5f0-5cfa9fd73ac4" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/FinalProjectPBO/nbproject/build-impl.xml" beforeDir="false" afterPath="$PROJECT_DIR$/FinalProjectPBO/nbproject/build-impl.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinalProjectPBO/nbproject/genfiles.properties" beforeDir="false" afterPath="$PROJECT_DIR$/FinalProjectPBO/nbproject/genfiles.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FinalProjectPBO/nbproject/private/private.properties" beforeDir="false" afterPath="$PROJECT_DIR$/FinalProjectPBO/nbproject/private/private.properties" afterDir="false" />
+    </list>
+>>>>>>> Stashed changes
+>>>>>>> main
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1yib8y2bEunkDFvPlkKeEfL4rgX" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+  </component>
+  <component name="RunManager">
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="finalprojectpbo.Main" />
+      <module name="FinalProject_KMMI_PBO" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="finalprojectpbo.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Main" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="4191e457-6afd-42fa-a5f0-5cfa9fd73ac4" name="Changes" comment="" />
+      <created>1632737199527</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1632737199527</updated>
+      <workItem from="1632737202227" duration="208000" />
+      <workItem from="1632740722574" duration="1144000" />
+      <workItem from="1632899630370" duration="53000" />
+<<<<<<< HEAD
+      <workItem from="1632974878556" duration="57000" />
+=======
+<<<<<<< Updated upstream
+=======
+      <workItem from="1632899742481" duration="422000" />
+>>>>>>> Stashed changes
+>>>>>>> main
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
