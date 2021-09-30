@@ -8,6 +8,7 @@ package finalprojectpbo;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import finalprojectpbo.database.DBHelper;
 import finalprojectpbo.database.NasabahDataModel;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -26,7 +27,11 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-        launch(args);
+//        NasabahDataModel ahdm = new NasabahDataModel();
+//        Individu ih = new Individu(2, "Alif Akbar", "Pringsewu", 123123L, 12334L, new Rekening(12312, 312515));
+//        ahdm.addIndvidual(ih);
+//        launch(args);
+        DBHelper.getConnetion();
     }
     
 }
