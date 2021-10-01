@@ -11,13 +11,13 @@ import java.util.ArrayList;
 public class Perusahaan extends Nasabah{
     private StringProperty nib;
 
-    public Perusahaan(int id, String nama, String alamat, ArrayList<Rekening> rekening, String nib) {
+    public Perusahaan(Integer id, String nama, String alamat, String nib, ArrayList<Rekening> rekening) {
         super(id, nama, alamat, rekening);
         this.nib = new SimpleStringProperty(nib);
     }
 
-    public Perusahaan(int id, String nama, String alamat, Rekening rekenings, String nib) {
-        super(id, nama, alamat, rekenings);
+    public Perusahaan(Integer id, String nama, String alamat,String nib, Rekening rekening) {
+        super(id, nama, alamat, rekening);
         this.nib = new SimpleStringProperty(nib);
     }
 
@@ -35,12 +35,16 @@ public class Perusahaan extends Nasabah{
 
     @Override
     public void print(){
-        System.out.println("Nib  : " + getNib());
-        System.out.println("Nama Perusahan : "+getNama());
-        System.out.println("Alamat Perusahaan : "+getAlamat());
+        System.out.println("NIB                 : " + getNib());
+        System.out.println("Nama Perusahan      : "+getNama());
+        System.out.println("Alamat Perusahaan   : "+getAlamat());
         System.out.println("Rekening : ");
+        System.out.printf("No %-10s %s\n", "No Rek", "Saldo");
+        int i = 1;
         for (Rekening rek : rekening){
-            System.out.println(rek);
+            System.out.printf("%d. %-10d %.2f\n", i, rek.getNoRekening(), rek.getSaldo());
+            i++;
         }
+        System.out.println();
     }
 }

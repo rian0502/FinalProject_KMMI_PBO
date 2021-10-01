@@ -5,9 +5,7 @@
  */
 package finalprojectpbo;
 
-import java.sql.SQLException;
-import java.util.ArrayList;
-
+import finalprojectpbo.database.DBHelper;
 import finalprojectpbo.database.NasabahDataModel;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -15,30 +13,28 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-/**
- *
- * @author muham
- */
+import java.util.Scanner;
+
 public class Main extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("view/view.fxml"));
-        
         Scene scene = new Scene(root);
-        
+        stage.setTitle("Sistem Nasabah Koperasi");
         stage.setScene(scene);
         stage.show();
     }
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-//        launch(args);
-        NasabahDataModel ndm = new NasabahDataModel();
-        Individu person = new Individu(1,"Asep","bekasi",new Rekening(123,5000),666,555);
-        ndm.addIndvidual(person);
+//        NasabahDataModel nadamod = new NasabahDataModel();
+//        Scanner scan = new Scanner(System.in);
+//        Long a = scan.nextLong();
+//        Long b = scan.nextLong();
+//        Individu indv = new Individu(5, "Alif Akbar", "Pringsewu", a, b, new Rekening(123323123, 23123.0));
+//        nadamod.addIndvidual(indv);
+        launch(args);
+//        DBHelper.getConnection();
     }
     
 }

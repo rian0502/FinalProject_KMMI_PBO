@@ -2,6 +2,7 @@
   <library name="sqlite-jdbc-3.36.0.1">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/../../../JDBCDRIVER/sqlite-jdbc-3.36.0.1.jar!/" />
+      <root url="jar://D:/KULIAH/KMMI/PROJECT/sqlite-jdbc-3.36.0.3.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

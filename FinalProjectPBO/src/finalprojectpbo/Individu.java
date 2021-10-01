@@ -12,19 +12,19 @@ public class Individu extends Nasabah {
     private LongProperty nik;
     private LongProperty npwp;
 
-    public Individu(int id, String nama, String alamat,ArrayList<Rekening> rekening, long nik, long npwp) {
+    public Individu(Integer id, String nama, String alamat, Long nik, Long npwp, ArrayList<Rekening> rekening) {
         super(id, nama, alamat,rekening);
         this.nik = new SimpleLongProperty(nik);
         this.npwp = new SimpleLongProperty(npwp);
     }
 
-    public Individu(int id, String nama, String alamat, Rekening rekenings, long nik, long npwp) {
+    public Individu(Integer id, String nama, String alamat, Long nik, Long npwp, Rekening rekenings) {
         super(id, nama, alamat, rekenings);
         this.nik = new SimpleLongProperty(nik);
         this.npwp = new SimpleLongProperty(npwp);
     }
 
-    public long getNik() {
+    public Long getNik() {
         return nik.get();
     }
 
@@ -36,7 +36,7 @@ public class Individu extends Nasabah {
         this.nik.set(nik);
     }
 
-    public long getNpwp() {
+    public Long getNpwp() {
         return npwp.get();
     }
 
@@ -52,11 +52,15 @@ public class Individu extends Nasabah {
     public void print(){
         System.out.println("NIK      : " + getNik());
         System.out.println("NPWP     : " + getNpwp());
-        System.out.println("Nama     : "+getNama());
-        System.out.println("Alamat   : "+getAlamat());
+        System.out.println("Nama     : " + getNama());
+        System.out.println("Alamat   : " + getAlamat());
         System.out.println("Rekening : ");
+        System.out.printf("No %-10s %s\n", "No Rek", "Saldo");
+        int i = 1;
         for (Rekening rek : rekening){
-            System.out.println(rek);
+            System.out.printf("%d. %-10d %.2f\n", i, rek.getNoRekening(), rek.getSaldo());
+            i++;
         }
+        System.out.println();
     }
 }

@@ -17,22 +17,24 @@ public abstract class Nasabah {
     private IntegerProperty rekNum;
     protected ArrayList <Rekening> rekening;
 
-    public Nasabah(int id, String nama, String alamat,ArrayList<Rekening> rekening) {
+    public Nasabah(Integer id, String nama, String alamat, ArrayList<Rekening> rekening) {
         this.id = new SimpleIntegerProperty(id);
         this.nama = new SimpleStringProperty(nama);
         this.alamat = new SimpleStringProperty(alamat);
+        this.rekNum = new SimpleIntegerProperty(rekening.size());
         this.rekening = rekening;
     }
-    public Nasabah(int id, String nama, String alamat, Rekening rekenings) {
-        this.rekening = new ArrayList<>();
+
+    public Nasabah(Integer id, String nama, String alamat, Rekening rekenings) {
+        rekening = new ArrayList<>();
         this.id = new SimpleIntegerProperty(id);
         this.nama = new SimpleStringProperty(nama);
         this.alamat = new SimpleStringProperty(alamat);
-
+        this.rekNum = new SimpleIntegerProperty(rekening.size());
         this.rekening.add(rekenings);
     }
 
-    public int getId() {
+    public Integer getId() {
         return id.get();
     }
 
@@ -68,7 +70,7 @@ public abstract class Nasabah {
         this.alamat.set(alamat);
     }
 
-    public int getRekNum() {
+    public Integer getRekNum() {
         return rekNum.get();
     }
 
@@ -89,4 +91,5 @@ public abstract class Nasabah {
     }
 
     abstract public void print();
+
 }
