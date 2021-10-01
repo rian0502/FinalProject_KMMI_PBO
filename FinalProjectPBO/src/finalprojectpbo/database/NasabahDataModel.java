@@ -60,17 +60,20 @@ public class NasabahDataModel {
             preparedStatement.setString(3,perusahaan.getAlamat());
             preparedStatement.execute();
             preparedStatement.close();
+
             PreparedStatement preparedPerusahaan = connection.prepareStatement(sqlIPerusahaan);
             preparedPerusahaan.setInt(1,perusahaan.getId());
             preparedPerusahaan.setString(2,perusahaan.getNib());
             preparedPerusahaan.execute();
             preparedPerusahaan.close();
+
             PreparedStatement preparedRekening = connection.prepareStatement(sqlRekening);
             preparedRekening.setInt(1,perusahaan.getRekening().get(0).getNoRekening());
             preparedRekening.setDouble(2,perusahaan.getRekening().get(0).getSaldo());
             preparedRekening.setInt(3,perusahaan.getId());
             preparedRekening.execute();
             preparedRekening.close();
+
         }catch (SQLException X){
             System.out.println(X);
         }
@@ -172,4 +175,5 @@ public class NasabahDataModel {
         preparedRekening.setDouble(3, rek.getSaldo());
         preparedRekening.execute();
     }
+
 }
