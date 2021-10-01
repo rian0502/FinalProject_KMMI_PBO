@@ -245,6 +245,7 @@ public class viewController implements Initializable {
         tfSaldoRekIndividual.setText("");
         tfSaldoRekBaruIndividual.setText("");
         tfNominalIndividual.setText("");
+        btnPerbaruiIndividual.fire();
     }
 
     @FXML
@@ -257,6 +258,7 @@ public class viewController implements Initializable {
         tfSaldoPerusahaan.setText("");
         tfSaldoRekBaruPerusahaan.setText("");
         tfNominalPerusahaan.setText("");
+        btnPerbaruiPerusahaan.fire();
     }
 
     @FXML
@@ -278,6 +280,7 @@ public class viewController implements Initializable {
         lblAddStatusindividual.setText("");
         tblRekeningIndividu.setItems(null);
         lblTarikTambahIndividu.setText("");
+        tfNominalIndividual.setText("");
     }
 
     @FXML
@@ -298,6 +301,7 @@ public class viewController implements Initializable {
         lblAddStatusPerusahaan.setText("");
         tblRekeningPerusahaan.setItems(null);
         lblTambahTarikPerusahaan.setText("");
+        tfNominalPerusahaan.setText("");
     }
 
     @FXML
