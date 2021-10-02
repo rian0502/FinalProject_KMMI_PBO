@@ -13,72 +13,70 @@ Pembagian Tugas:
 - Alif : Mendesain dan membuat GUI menggunakan JafaFX dan Scene Builder
 
 
-    classDiagram
-        Nasabah <|-- Individual
+        classDiagram
+
+        Nasabah <|-- Individu
         Nasabah <|-- Perusahaan
-        Nasabah "1"--o"*" Account : has
+        Nasabah "1"--o"*" Rekening : has
         Nasabah o-- NasabahDataModel : Data Modeling
-        NasabahDataModel <-- AccountHolderController : Data Control
+        NasabahDataModel <-- NasabahController : Data Control
         NasabahDataModel --> DBHelper : DB Connection
-        AccountHolderController <.. AccountHolderForm : Form Control      
+        NasabahController <.. NasabahForm : Form Control
+        class Nasabah{
+          <<abstract>>
+          #IntegerProperty ID
+          #StringProperty name
+          #StringProperty alamat
+          #IntegerProperty numRekening
+          #ArrayList<Rekening> rekening
+          +IntegerProperty nextID()
+          + abstract print()
+        }
 
-    class Nasabah{
-      <<abstract>>
-      #IntegerProperty ID
-      #StringProperty nama
-      #StringProperty alamat
-      #IntegerProperty sizeAccount
-      +IntegerProperty nextID()
-      +print(void)
-    }
+        class Individu{
+          -LongProperty nik
+          -LongProperty npwp
+          +Long getNik()
+          +Long getNpwp()
+          +print()
+        }
+        class Perusahaan{
+          -StringProperty nib
+          +String getNib()
+          +print()
+        }
+        class Rekening{
+          -IntegerProperty noRekening;
+          -DoubleProperty saldo
+          +tambahSaldo(double jumlah)
+          +tartikTunai(double jumlah)
+          +double getSaldo()
+        }
+
+        class NasabahDataModel{
+            Connection conn
+            addNasabah()
+            addRekening()
+            getIndividu()
+            getPerusahaan()
+            nextNasabahID()
+            nextNoRekening()
+        }
+
+        class NasabahController{
+            initialize()
+            handleButtonAddRekening()
+            handleButtonAddAccountHolder()
+            loadDataIndividua()
+            loadDataPerusahaan()
+            loadDataRekening()
+            handleClearForm()
+        }
+        class DBHelper{
+            - String DBURL
+            getConnection()
+            createTable();
+        }
     
-    class Individual{
-      -LongProperty nik
-      -LongProperty npwp
-      +setNik(void)
-      +setNpwp(void)
-      +getNik()
-      +getNpwp()
-      +print():
-    }
-    class Perusahaan{
-      -StringProperty nib
-      +setNib()
-      +getNib()
-      +print():
-    }
-    class Account{
-      -IntegerProperty accNumber;
-      -DoubleProperty balance
-      +deposite(double amt)
-      +withdraw(double amt)
-      +double getBalance()
-    }
-
-    class NasabahDataModel{
-        Connection conn
-        addAccountHolder()
-        addAccount()
-        getIndividuals()
-        getPerusahaans()
-        nextAccountHolderID()
-        nextAccountNumber()
-    }
-
-    class AccountHolderController{
-        initialize()
-        handleButtonAddAccount()
-        handleButtonAddAccountHolder()
-        loadDataIndividual()
-        loadDataPerusahaan()
-        loadDataAccount()
-        handleClearForm()
-    }
-    class DBHelper{
-        - String USERNAME
-        - String PASSWORD
-        - String DB
-        getConnection()
-        getConnection(String driver)
-        createTable();
-    }
+   
+![image](https://user-images.githubusercontent.com/83405871/135701398-0b2290c6-a4d0-4753-b37d-81b9f0d05eaa.png)
