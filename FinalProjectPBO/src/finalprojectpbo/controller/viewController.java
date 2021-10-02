@@ -278,6 +278,7 @@ public class viewController implements Initializable {
         lblAddStatusindividual.setText("");
         tblRekeningIndividu.setItems(null);
         lblTarikTambahIndividu.setText("");
+        btnHapusIndividual.fire();
     }
 
     @FXML
@@ -298,6 +299,7 @@ public class viewController implements Initializable {
         lblAddStatusPerusahaan.setText("");
         tblRekeningPerusahaan.setItems(null);
         lblTambahTarikPerusahaan.setText("");
+        btnHapusPerusahaan.fire();
     }
 
     @FXML
@@ -365,8 +367,9 @@ public class viewController implements Initializable {
 
     @FXML
     void handleTambahSaldoIndividual(ActionEvent event) throws SQLException {
-        Double saldoBaru = globalRekening.getSaldo() + Double.parseDouble(tfNominalIndividual.getText());
-        String tambahSaldo = "UPDATE Rekening SET saldo = " + saldoBaru
+        globalRekening.tambahSaldo(Double.parseDouble(tfNominalIndividual.getText()));
+//        Double saldoBaru = globalRekening.getSaldo() + Double.parseDouble(tfNominalIndividual.getText());
+        String tambahSaldo = "UPDATE Rekening SET saldo = " + globalRekening.getSaldo()
                 + " WHERE noRekening = " + globalRekening.getNoRekening();
         PreparedStatement preparedSaldoBaru = nadamod.connection.prepareStatement(tambahSaldo);
         preparedSaldoBaru.execute();
@@ -382,8 +385,9 @@ public class viewController implements Initializable {
         if (globalRekening.getSaldo() < Double.parseDouble(tfNominalIndividual.getText())) {
             lblTarikTambahIndividu.setText("Saldo Kurang");
         } else {
-            Double saldoBaru = globalRekening.getSaldo() - Double.parseDouble(tfNominalIndividual.getText());
-            String tarikTunai = "UPDATE Rekening SET saldo = " + saldoBaru
+            globalRekening.tarikTunai(Double.parseDouble(tfNominalIndividual.getText()));
+//            Double saldoBaru = globalRekening.getSaldo() - Double.parseDouble(tfNominalIndividual.getText());
+            String tarikTunai = "UPDATE Rekening SET saldo = " + globalRekening.getSaldo()
                     + " WHERE noRekening = " + globalRekening.getNoRekening();
             PreparedStatement preparedSaldoBaru = nadamod.connection.prepareStatement(tarikTunai);
             preparedSaldoBaru.execute();
@@ -397,8 +401,9 @@ public class viewController implements Initializable {
 
     @FXML
     void handleTambahSaldoPerusahaan(ActionEvent event) throws SQLException{
-        Double saldoBaru = globalRekening.getSaldo() + Double.parseDouble(tfNominalPerusahaan.getText());
-        String tambahSaldo = "UPDATE Rekening SET saldo = " + saldoBaru
+        globalRekening.tambahSaldo(Double.parseDouble(tfNominalPerusahaan.getText()));
+//        Double saldoBaru = globalRekening.getSaldo() + Double.parseDouble(tfNominalPerusahaan.getText());
+        String tambahSaldo = "UPDATE Rekening SET saldo = " + globalRekening.getSaldo()
                 + " WHERE noRekening = " + globalRekening.getNoRekening();
         PreparedStatement preparedSaldoBaru = nadamod.connection.prepareStatement(tambahSaldo);
         preparedSaldoBaru.execute();
@@ -414,8 +419,9 @@ public class viewController implements Initializable {
         if (globalRekening.getSaldo() < Double.parseDouble(tfNominalPerusahaan.getText())) {
             lblTarikTambahIndividu.setText("Saldo Kurang");
         } else {
-            Double saldoBaru = globalRekening.getSaldo() - Double.parseDouble(tfNominalPerusahaan.getText());
-            String tarikTunai = "UPDATE Rekening SET saldo = " + saldoBaru
+            globalRekening.tarikTunai(Double.parseDouble(tfNominalPerusahaan.getText()));
+//            Double saldoBaru = globalRekening.getSaldo() - Double.parseDouble(tfNominalPerusahaan.getText());
+            String tarikTunai = "UPDATE Rekening SET saldo = " + globalRekening.getSaldo()
                     + " WHERE noRekening = " + globalRekening.getNoRekening();
             PreparedStatement preparedSaldoBaru = nadamod.connection.prepareStatement(tarikTunai);
             preparedSaldoBaru.execute();
