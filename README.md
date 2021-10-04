@@ -80,3 +80,28 @@ Pembagian Tugas:
     
    
 ![image](https://user-images.githubusercontent.com/83405871/135701398-0b2290c6-a4d0-4753-b37d-81b9f0d05eaa.png)
+
+        erDiagram
+                Nasbaah ||..|| INDIVIDU : is
+                Nasbaah ||--|| PERUSAHAAN : is
+                Nasbaah ||--|{ REKENING : "has"
+                Nasbaah {
+                    int id_nasabah
+                    string nama
+                    string alamat
+                }
+                INDIVIDU{
+                    int id_nasabah
+                    long nik
+                    long npwp
+                }
+                PERUSAHAAN{
+                    int id_nasabah
+                    string nib
+                }
+                REKENING{
+                    int noRekening
+                    double saldo
+                    int id_nasabah
+                }
+![image](https://user-images.githubusercontent.com/83405871/135813012-40b04538-7177-43be-a688-df444272a2d2.png)
